@@ -22,3 +22,5 @@
   frontmost-app scan.
 - Documented the exported JSON catalog schema and added an exact-output schema
   fixture test.
+- Added an initial shortcut mapping library that can merge curated/manual
+  mappings with scanned shortcuts for conflict detection.

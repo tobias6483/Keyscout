@@ -6,10 +6,15 @@ final class KeyScoutController {
     private let scanner = AccessibilityShortcutScanner()
     private let generator = ShortcutGenerator()
     private let presenter = ShortcutListPresenter()
+    private let mappingLibrary: ShortcutMappingLibrary
     private var latestCatalog = ShortcutCatalog(shortcuts: [])
 
+    init(mappingLibrary: ShortcutMappingLibrary = .builtIn) {
+        self.mappingLibrary = mappingLibrary
+    }
+
     func scanFrontmostApplication() -> ShortcutCatalog {
-        latestCatalog = scanner.scanFrontmostApplication()
+        latestCatalog = mappingLibrary.mergedCatalog(with: scanner.scanFrontmostApplication())
         return latestCatalog
     }
 

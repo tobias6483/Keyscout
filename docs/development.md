@@ -29,7 +29,8 @@ KeyScout appears in the macOS menu bar as `⌘?`.
 
 Use `Scan Frontmost App` to populate the `Scanned Shortcuts` submenu. The submenu
 shows a compact limited view of the latest scan; export JSON to inspect the full
-catalog.
+catalog. Built-in curated mappings are merged into the latest catalog when they
+match the scanned app name or bundle identifier.
 
 The exported catalog shape is documented in [json-schema.md](json-schema.md),
 with a sample file at [examples/sample-catalog.json](examples/sample-catalog.json).

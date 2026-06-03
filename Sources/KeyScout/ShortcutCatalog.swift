@@ -6,13 +6,7 @@ struct ShortcutCatalog: Codable, Equatable, Sendable {
 
     init(scannedAt: Date = Date(), shortcuts: [AppShortcut]) {
         self.scannedAt = scannedAt
-        self.shortcuts = shortcuts.sorted {
-            if $0.appName == $1.appName {
-                return $0.shortcut.sortKey < $1.shortcut.sortKey
-            }
-
-            return $0.appName < $1.appName
-        }
+        self.shortcuts = shortcuts.sorted { $0.catalogSortKey < $1.catalogSortKey }
     }
 
     func conflicts(for shortcut: KeyboardShortcut) -> [AppShortcut] {
@@ -21,5 +15,24 @@ struct ShortcutCatalog: Codable, Equatable, Sendable {
 
     func contains(_ shortcut: KeyboardShortcut) -> Bool {
         !conflicts(for: shortcut).isEmpty
+    }
+
+    func merging(_ other: ShortcutCatalog) -> ShortcutCatalog {
+        ShortcutCatalog(
+            scannedAt: max(scannedAt, other.scannedAt),
+            shortcuts: shortcuts + other.shortcuts
+        )
+    }
+}
+
+private extension AppShortcut {
+    var catalogSortKey: String {
+        [
+            appName,
+            shortcut.sortKey,
+            menuPath.joined(separator: "\u{0}"),
+            source.rawValue
+        ]
+        .joined(separator: "\u{0}")
     }
 }
