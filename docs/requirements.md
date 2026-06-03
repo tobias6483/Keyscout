@@ -6,7 +6,8 @@ This document tracks implementation coverage against the product brief.
 
 - Menu bar app: initial Swift/AppKit status item scaffold
 - Global hotkey scanner: not implemented yet
-- Known shortcuts per app: initial accessibility-based frontmost app scan
+- Known shortcuts per app: initial accessibility-based frontmost app scan with
+  menu submenu browsing
 - Generate unused shortcut: initial deterministic generator implemented
 - Conflict warning: core conflict lookup implemented
 - Export to JSON: initial export of latest scan to Downloads
@@ -21,4 +22,5 @@ This document tracks implementation coverage against the product brief.
 - Curated shortcut mappings are not implemented yet.
 - JSON schema is generated from Swift Codable models and still needs a stable
   documented schema before external contributors add mappings.
-- The menu bar UI is intentionally minimal and needs a richer shortcut list view.
+- The menu bar UI can show a limited shortcut submenu, but still needs a richer
+  shortcut list view for searching and inspecting full scans.

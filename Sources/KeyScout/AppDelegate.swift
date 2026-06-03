@@ -4,6 +4,7 @@ import AppKit
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private let controller = KeyScoutController()
+    private var statusText = "Ready"
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -14,7 +15,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         item.button?.title = "⌘?"
         item.button?.toolTip = "KeyScout"
-        item.menu = makeMenu(status: "Ready")
+        item.menu = makeMenu(status: statusText)
         statusItem = item
     }
 
@@ -27,6 +28,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let statusItem = NSMenuItem(title: status, action: nil, keyEquivalent: "")
         statusItem.isEnabled = false
         menu.addItem(statusItem)
+        menu.addItem(.separator())
+
+        let shortcutsMenuItem = NSMenuItem(title: "Scanned Shortcuts", action: nil, keyEquivalent: "")
+        shortcutsMenuItem.submenu = makeShortcutsMenu()
+        menu.addItem(shortcutsMenuItem)
+
         menu.addItem(.separator())
 
         menu.addItem(
@@ -63,6 +70,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         return menu
     }
 
+    private func makeShortcutsMenu() -> NSMenu {
+        let menu = NSMenu()
+        let summary = NSMenuItem(title: controller.latestAppSummary(), action: nil, keyEquivalent: "")
+        summary.isEnabled = false
+        menu.addItem(summary)
+
+        let rows = controller.latestShortcutRows()
+
+        if rows.isEmpty {
+            let empty = NSMenuItem(title: "Scan the frontmost app to populate this list", action: nil, keyEquivalent: "")
+            empty.isEnabled = false
+            menu.addItem(empty)
+            return menu
+        }
+
+        menu.addItem(.separator())
+
+        for row in rows {
+            let item = NSMenuItem(title: row.title, action: nil, keyEquivalent: "")
+            item.toolTip = row.detail
+            item.isEnabled = false
+            menu.addItem(item)
+        }
+
+        return menu
+    }
+
     @objc private func scanFrontmostApp() {
         let catalog = controller.scanFrontmostApplication()
         updateStatus("Scanned \(catalog.shortcuts.count) shortcuts")
@@ -82,6 +116,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func updateStatus(_ status: String) {
+        statusText = status
         statusItem?.menu = makeMenu(status: status)
     }
 }
