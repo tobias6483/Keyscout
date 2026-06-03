@@ -15,7 +15,7 @@ Implemented:
 - Scanned shortcut submenu for browsing the latest frontmost-app scan
 - Deterministic unused shortcut generator
 - Shortcut conflict lookup
-- JSON export for the latest shortcut catalog
+- JSON export for the latest shortcut catalog with documented schema and sample
 - Unit tests for shortcut generation, conflict lookup, and JSON round trips
 - GitHub Actions build and test workflow
 - GitHub issue triage and unsigned app artifact workflows
@@ -25,7 +25,7 @@ Planned:
 - Global hotkey detection beyond app menus
 - Curated shortcut mapping data
 - Rich shortcut list window or popover beyond the current menu submenu
-- Stable JSON schema documentation
+- Curated shortcut mapping import/export workflow
 - Signed app release workflow
 
 ## MVP
@@ -100,6 +100,8 @@ The local app bundle is unsigned. See [docs/development.md](docs/development.md)
 - [docs/requirements.md](docs/requirements.md) tracks MVP coverage.
 - [docs/architecture.md](docs/architecture.md) explains the current code shape.
 - [docs/development.md](docs/development.md) explains local development.
+- [docs/json-schema.md](docs/json-schema.md) documents exported shortcut
+  catalogs.
 - [docs/release.md](docs/release.md) explains release and artifact status.
 - [docs/triage.md](docs/triage.md) explains issue labels and automation.
 

@@ -16,7 +16,8 @@ KeyScout is starting with a small native macOS architecture.
 - `ShortcutCatalog` stores scanned shortcuts and answers conflict queries.
 - `ShortcutGenerator` searches deterministic candidate combinations and skips
   known conflicts and reserved shortcuts.
-- `ShortcutJSONStore` imports and exports catalog JSON.
+- `ShortcutJSONStore` imports and exports catalog JSON documented in
+  [json-schema.md](json-schema.md).
 - `ShortcutListPresenter` formats scanned shortcuts for compact menu display.
 
 ## Scanning

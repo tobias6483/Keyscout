@@ -1,0 +1,31 @@
+{
+  "scannedAt" : "2027-01-15T08:00:00Z",
+  "shortcuts" : [
+    {
+      "appName" : "Example Editor",
+      "bundleIdentifier" : "com.example.editor",
+      "menuPath" : [
+        "File",
+        "Open"
+      ],
+      "shortcut" : {
+        "key" : "O",
+        "modifiers" : 1
+      },
+      "source" : "manual"
+    },
+    {
+      "appName" : "Example Editor",
+      "bundleIdentifier" : "com.example.editor",
+      "menuPath" : [
+        "Window",
+        "Show Inspector"
+      ],
+      "shortcut" : {
+        "key" : "I",
+        "modifiers" : 5
+      },
+      "source" : "curated"
+    }
+  ]
+}

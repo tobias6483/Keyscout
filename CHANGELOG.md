@@ -20,3 +20,5 @@
 - Added project-specific `AGENTS.md` with branch workflow and protection facts.
 - Added a `Scanned Shortcuts` menu bar submenu for browsing the latest
   frontmost-app scan.
+- Documented the exported JSON catalog schema and added an exact-output schema
+  fixture test.
