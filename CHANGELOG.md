@@ -26,3 +26,4 @@
   mappings with scanned shortcuts for conflict detection.
 - Expanded and documented conservative reserved shortcut defaults for unused
   shortcut generation.
+- Added menu status and settings shortcut for missing Accessibility permission.

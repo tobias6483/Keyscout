@@ -54,6 +54,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Signed build workflow
 - Basic release notes
 - Documentation for permissions
+- Accessibility permission menu status: initial implementation complete
 - Contributor guide for shortcut mappings
 - Known limitations page
 - Manual app QA recorded against the v0.1 checklist

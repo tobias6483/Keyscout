@@ -52,8 +52,8 @@ behavior and macOS permissions, but it is not a release artifact.
 
 Shortcut discovery uses macOS Accessibility APIs where possible. During manual
 testing, macOS may ask for Accessibility permission so KeyScout can inspect app
-menus. KeyScout should explain this permission before relying on it in a public
-release.
+menus. If permission is missing, the menu shows an Accessibility permission
+message and an `Open Accessibility Settings` action.
 
 ## GitHub Workflow
 

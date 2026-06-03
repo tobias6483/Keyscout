@@ -12,6 +12,7 @@ Implemented:
 
 - Native Swift/AppKit menu bar scaffold
 - Best-effort frontmost app shortcut scan through macOS Accessibility APIs
+- Menu status for missing Accessibility permission with settings shortcut
 - Scanned shortcut submenu for browsing the latest frontmost-app scan
 - Built-in curated shortcut mapping library for supplementing scans
 - Deterministic unused shortcut generator
