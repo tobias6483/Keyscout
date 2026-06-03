@@ -1,0 +1,24 @@
+- name: bug
+  color: d73a4a
+  description: Something is not working
+- name: enhancement
+  color: a2eeef
+  description: New feature or improvement
+- name: documentation
+  color: 0075ca
+  description: Documentation improvements
+- name: security
+  color: ee0701
+  description: Security-sensitive work
+- name: privacy
+  color: 5319e7
+  description: Privacy model or data handling
+- name: shortcut-mapping
+  color: fbca04
+  description: App shortcut mapping data
+- name: macos
+  color: 1d76db
+  description: macOS platform behavior
+- name: swift
+  color: f05138
+  description: Swift or SwiftUI implementation

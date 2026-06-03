@@ -1,0 +1,56 @@
+name: Shortcut mapping
+description: Contribute or correct shortcut mapping data
+title: "[Mapping]: "
+labels:
+  - shortcut-mapping
+body:
+  - type: input
+    id: app-name
+    attributes:
+      label: App name
+      placeholder: "Example: Visual Studio Code"
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      placeholder: "Example: 1.101.0"
+    validations:
+      required: true
+  - type: input
+    id: bundle-id
+    attributes:
+      label: Bundle identifier
+      placeholder: "Example: com.microsoft.VSCode"
+    validations:
+      required: false
+  - type: textarea
+    id: mappings
+    attributes:
+      label: Shortcut mappings
+      description: Include menu item names and shortcut combinations.
+      placeholder: |
+        Command Palette: ⇧⌘P
+        Go to File: ⌘P
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Source
+      options:
+        - Manually verified
+        - Detected through app menus
+        - Imported from app settings
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Add caveats, locale differences, or private-data concerns.
+    validations:
+      required: false
