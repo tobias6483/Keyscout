@@ -23,7 +23,8 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Document what can and cannot be detected reliably
 - Define shortcut normalization rules: initial implementation complete
 - Define reserved macOS shortcut handling: initial defaults implemented
-- Create sample JSON mapping format: initial Codable export implemented
+- Create sample JSON mapping format: initial Codable export and schema
+  documentation implemented
 
 ## Phase 2: Core Logic
 
@@ -33,6 +34,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Unused shortcut generation: initial implementation complete
 - JSON import/export: initial implementation complete
 - Unit tests: initial coverage complete
+- JSON schema fixture test: initial coverage complete
 
 ## Phase 3: macOS MVP
 

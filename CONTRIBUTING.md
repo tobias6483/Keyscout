@@ -78,6 +78,8 @@ Shortcut data is expected to be imperfect. If you contribute mappings:
 - Include the app name and version.
 - Prefer stable menu item names.
 - Note whether the mapping was detected, manually verified, or imported.
+- Follow the exported catalog shape in
+  [docs/json-schema.md](docs/json-schema.md).
 - Avoid adding private, organization-specific, or personally identifying shortcut data.
 
 ## Issue Triage
