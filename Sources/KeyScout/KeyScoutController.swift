@@ -5,6 +5,7 @@ import Foundation
 final class KeyScoutController {
     private let scanner = AccessibilityShortcutScanner()
     private let generator = ShortcutGenerator()
+    private let presenter = ShortcutListPresenter()
     private var latestCatalog = ShortcutCatalog(shortcuts: [])
 
     func scanFrontmostApplication() -> ShortcutCatalog {
@@ -20,6 +21,14 @@ final class KeyScoutController {
         }
 
         return "Suggested unused shortcut: \(shortcut)"
+    }
+
+    func latestAppSummary() -> String {
+        presenter.appSummary(for: latestCatalog)
+    }
+
+    func latestShortcutRows() -> [ShortcutMenuRow] {
+        presenter.menuRows(for: latestCatalog)
     }
 
     func conflictSummary(for shortcut: KeyboardShortcut) -> String {

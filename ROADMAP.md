@@ -38,7 +38,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 
 - Swift/AppKit menu bar app: initial scaffold complete
 - App scanner: initial frontmost-app scanner complete
-- Per-app shortcut list
+- Per-app shortcut list: initial menu submenu complete; richer view pending
 - Conflict warning UI: core logic complete; richer UI pending
 - Generate unused shortcut action: initial menu action complete
 - Local snapshot export: initial JSON export complete

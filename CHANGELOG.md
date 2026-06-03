@@ -18,3 +18,5 @@
 - Added local unsigned `.app` bundle build script.
 - Added GitHub Actions `Swift Build and Test` workflow.
 - Added project-specific `AGENTS.md` with branch workflow and protection facts.
+- Added a `Scanned Shortcuts` menu bar submenu for browsing the latest
+  frontmost-app scan.

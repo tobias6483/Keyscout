@@ -27,6 +27,10 @@ swift run KeyScout
 
 KeyScout appears in the macOS menu bar as `⌘?`.
 
+Use `Scan Frontmost App` to populate the `Scanned Shortcuts` submenu. The submenu
+shows a compact limited view of the latest scan; export JSON to inspect the full
+catalog.
+
 ## Local App Bundle
 
 ```sh
