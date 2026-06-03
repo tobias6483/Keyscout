@@ -16,7 +16,8 @@ repository labels when needed, and applies matching labels.
 - `area:scanner`: Accessibility API scanning, app menu traversal, and app
   shortcut discovery.
 - `area:generator`: unused shortcut generation, candidate ranking, and reserved
-  shortcut handling.
+  shortcut handling. Reserved shortcut changes should mention whether they are
+  system, app, imported, or user-blocked reservations.
 - `area:mapping`: curated app mappings, manual mappings, imports, and JSON
   mapping data.
 - `area:menu-bar`: menu bar UX, status text, actions, and future shortcut list

@@ -35,6 +35,9 @@ match the scanned app name or bundle identifier.
 The exported catalog shape is documented in [json-schema.md](json-schema.md),
 with a sample file at [examples/sample-catalog.json](examples/sample-catalog.json).
 
+Reserved shortcut defaults are documented in
+[reserved-shortcuts.md](reserved-shortcuts.md).
+
 ## Local App Bundle
 
 ```sh

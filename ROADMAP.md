@@ -22,7 +22,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
   frontmost-app scanner implemented
 - Document what can and cannot be detected reliably
 - Define shortcut normalization rules: initial implementation complete
-- Define reserved macOS shortcut handling: initial defaults implemented
+- Define reserved macOS shortcut handling: expanded initial defaults documented
 - Create sample JSON mapping format: initial Codable export and schema
   documentation implemented
 - Add curated shortcut mapping data: initial built-in mapping library
@@ -34,6 +34,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Modifier and key normalization: initial implementation complete
 - Conflict detection: initial implementation complete
 - Unused shortcut generation: initial implementation complete
+- Reserved shortcut categories: initial implementation complete
 - JSON import/export: initial implementation complete
 - Curated/manual mapping merge: initial implementation complete
 - Unit tests: initial coverage complete
@@ -62,5 +63,5 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Curated community shortcut database
 - Import mappings from common launcher or automation tools
 - System shortcut awareness
-- App-specific suggestion profiles
 - Optional user-defined blocked combinations
+- App-specific suggestion profiles
