@@ -43,3 +43,17 @@ Shortcut discovery uses macOS Accessibility APIs where possible. During manual
 testing, macOS may ask for Accessibility permission so KeyScout can inspect app
 menus. KeyScout should explain this permission before relying on it in a public
 release.
+
+## GitHub Workflow
+
+KeyScout is open source. External contributors can fork the repository, push a
+branch to their fork, and open a pull request against `main`.
+
+Maintainers and project agents with write access should follow the detailed
+workflow in [../AGENTS.md](../AGENTS.md). The short version is: work on a
+branch, stage only relevant files, run `swift test`, use `gh` for PR creation
+and merge, wait for the `Swift Build and Test` check, then squash-merge and
+delete the branch. Do not commit or push directly to `main`.
+
+Issue routing is automated by `.github/workflows/issue-triage.yml`. See
+[triage.md](triage.md) for label behavior and maintainer review notes.

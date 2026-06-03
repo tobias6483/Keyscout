@@ -1,0 +1,155 @@
+name: Issue Triage
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    name: Label Issue
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Apply triage labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const text = [
+              issue.title,
+              issue.body || "",
+            ].join("\n").toLowerCase();
+
+            const labels = new Set();
+
+            const addWhen = (label, patterns) => {
+              if (patterns.some((pattern) => pattern.test(text))) {
+                labels.add(label);
+              }
+            };
+
+            addWhen("area:scanner", [
+              /\bscanner\b/,
+              /\bscan\b/,
+              /\baccessibility\b/,
+              /\bax\b/,
+              /\bmenu\b/,
+              /\bfrontmost\b/,
+              /\bapp\b/,
+            ]);
+            addWhen("area:generator", [
+              /\bgenerate\b/,
+              /\bgenerator\b/,
+              /\bunused\b/,
+              /\bcandidate\b/,
+              /\breserved\b/,
+              /\bshortcut suggestion\b/,
+            ]);
+            addWhen("area:mapping", [
+              /\bmapping\b/,
+              /\bshortcut data\b/,
+              /\bjson\b/,
+              /\bimport\b/,
+              /\bexport\b/,
+              /\bcurated\b/,
+              /\bmanual\b/,
+            ]);
+            addWhen("area:menu-bar", [
+              /\bmenu bar\b/,
+              /\bstatus item\b/,
+              /\bpopover\b/,
+              /\bwindow\b/,
+              /\bshortcut list\b/,
+              /\bui\b/,
+              /\bux\b/,
+            ]);
+            addWhen("area:docs", [
+              /\bdocs?\b/,
+              /\bdocumentation\b/,
+              /\breadme\b/,
+              /\brelease notes?\b/,
+              /\broadmap\b/,
+              /\bchangelog\b/,
+            ]);
+            addWhen("area:release", [
+              /\brelease\b/,
+              /\bartifact\b/,
+              /\bsign(?:ed|ing)?\b/,
+              /\bnotari[sz]e?d?\b/,
+              /\bhomebrew\b/,
+              /\bcask\b/,
+              /\bchecksum\b/,
+            ]);
+            addWhen("privacy-review", [
+              /\bprivacy\b/,
+              /\bsecurity\b/,
+              /\bpermission\b/,
+              /\bpermissions\b/,
+              /\baccessibility\b/,
+              /\btracking\b/,
+              /\banalytics\b/,
+              /\btelemetry\b/,
+              /\bcloud\b/,
+              /\bnetwork\b/,
+              /\bsync\b/,
+              /\bexport\b/,
+              /\bstorage\b/,
+              /\bdiagnostics\b/,
+            ]);
+
+            if (labels.size === 0) {
+              labels.add("needs-triage");
+            }
+
+            const labelColors = {
+              "area:scanner": "1d76db",
+              "area:generator": "0e8a16",
+              "area:mapping": "fbca04",
+              "area:menu-bar": "9467bd",
+              "area:docs": "0075ca",
+              "area:release": "5319e7",
+              "privacy-review": "b60205",
+              "needs-triage": "ededed",
+            };
+
+            const labelDescriptions = {
+              "area:scanner": "Accessibility scanning, menu traversal, and app shortcut discovery.",
+              "area:generator": "Unused shortcut generation, candidate ranking, and reserved shortcut handling.",
+              "area:mapping": "Curated mappings, manual mappings, imports, exports, and JSON shortcut data.",
+              "area:menu-bar": "Menu bar UX, status text, actions, and shortcut list views.",
+              "area:docs": "Documentation, README, roadmap, changelog, and contributor guidance.",
+              "area:release": "Build, packaging, artifacts, signing, notarization, or distribution work.",
+              "privacy-review": "Touches permissions, privacy-sensitive behavior, security, or local data handling.",
+              "needs-triage": "Needs maintainer review before a more specific label is known.",
+            };
+
+            for (const name of labels) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name,
+                });
+              } catch (error) {
+                if (error.status !== 404) {
+                  throw error;
+                }
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name,
+                  color: labelColors[name] || "ededed",
+                  description: labelDescriptions[name] || "KeyScout triage label.",
+                });
+              }
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              labels: [...labels],
+            });

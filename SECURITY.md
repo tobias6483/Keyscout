@@ -34,6 +34,8 @@ KeyScout should:
 - Explain why Accessibility permissions are needed before asking for them.
 - Treat exported JSON as user-owned data.
 - Avoid storing private app data unless the user explicitly saves it.
+- Treat the `privacy-review` issue label as a maintainer routing hint, not as a
+  substitute for manual security review.
 
 ## Out of Scope
 

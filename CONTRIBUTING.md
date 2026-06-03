@@ -59,6 +59,7 @@ Pull requests should describe:
 - Why it changed
 - How it was tested
 - Known limitations or follow-up work
+- Whether it changes privacy, permissions, local storage, exports, or release behavior
 
 ## Issues
 
@@ -78,6 +79,15 @@ Shortcut data is expected to be imperfect. If you contribute mappings:
 - Prefer stable menu item names.
 - Note whether the mapping was detected, manually verified, or imported.
 - Avoid adding private, organization-specific, or personally identifying shortcut data.
+
+## Issue Triage
+
+New and edited issues are labeled automatically by GitHub Actions based on the
+issue title/body and issue-form fields. See [docs/triage.md](docs/triage.md)
+for the current label set and privacy-review signals.
+
+Permission-sensitive proposals should use the `Privacy review` issue template
+before implementation.
 
 ## Code of Conduct
 
