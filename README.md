@@ -15,6 +15,7 @@ Implemented:
 - Scanned shortcut submenu for browsing the latest frontmost-app scan
 - Built-in curated shortcut mapping library for supplementing scans
 - Deterministic unused shortcut generator
+- Conservative reserved shortcut defaults for common macOS/app combinations
 - Shortcut conflict lookup
 - JSON export for the latest shortcut catalog with documented schema and sample
 - Unit tests for shortcut generation, conflict lookup, and JSON round trips
@@ -103,6 +104,8 @@ The local app bundle is unsigned. See [docs/development.md](docs/development.md)
 - [docs/development.md](docs/development.md) explains local development.
 - [docs/json-schema.md](docs/json-schema.md) documents exported shortcut
   catalogs.
+- [docs/reserved-shortcuts.md](docs/reserved-shortcuts.md) documents default
+  reserved shortcut handling.
 - [docs/release.md](docs/release.md) explains release and artifact status.
 - [docs/triage.md](docs/triage.md) explains issue labels and automation.
 

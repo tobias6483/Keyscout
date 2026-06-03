@@ -24,3 +24,5 @@
   fixture test.
 - Added an initial shortcut mapping library that can merge curated/manual
   mappings with scanned shortcuts for conflict detection.
+- Expanded and documented conservative reserved shortcut defaults for unused
+  shortcut generation.
