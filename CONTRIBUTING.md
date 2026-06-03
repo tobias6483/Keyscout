@@ -80,6 +80,7 @@ Shortcut data is expected to be imperfect. If you contribute mappings:
 - Note whether the mapping was detected, manually verified, or imported.
 - Follow the exported catalog shape in
   [docs/json-schema.md](docs/json-schema.md).
+- Expect mappings to be matched by app name or bundle identifier.
 - Avoid adding private, organization-specific, or personally identifying shortcut data.
 
 ## Issue Triage

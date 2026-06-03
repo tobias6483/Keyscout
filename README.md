@@ -13,6 +13,7 @@ Implemented:
 - Native Swift/AppKit menu bar scaffold
 - Best-effort frontmost app shortcut scan through macOS Accessibility APIs
 - Scanned shortcut submenu for browsing the latest frontmost-app scan
+- Built-in curated shortcut mapping library for supplementing scans
 - Deterministic unused shortcut generator
 - Shortcut conflict lookup
 - JSON export for the latest shortcut catalog with documented schema and sample
@@ -23,9 +24,9 @@ Implemented:
 Planned:
 
 - Global hotkey detection beyond app menus
-- Curated shortcut mapping data
+- External curated/manual shortcut mapping imports
 - Rich shortcut list window or popover beyond the current menu submenu
-- Curated shortcut mapping import/export workflow
+- Curated shortcut mapping import workflow
 - Signed app release workflow
 
 ## MVP
