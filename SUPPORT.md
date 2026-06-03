@@ -17,7 +17,6 @@ Use GitHub issues for:
 Please check:
 
 - Existing issues
-- [project.md](project.md)
 - [ROADMAP.md](ROADMAP.md)
 - [PRIVACY.md](PRIVACY.md)
 

@@ -6,7 +6,7 @@ KeyScout is an open-source macOS menu bar app that helps you find unused keyboar
 
 ## Status
 
-KeyScout is in early planning. The repository currently contains the product brief, contribution guidelines, and project policies. The macOS app implementation has not started yet.
+KeyScout is in early planning. The repository currently contains contribution guidelines, project policies, and the public roadmap. The macOS app implementation has not started yet.
 
 ## MVP
 
@@ -37,7 +37,6 @@ KeyScout is in early planning. The repository currently contains the product bri
 
 ## Repository
 
-- [project.md](project.md) contains the product brief and open questions.
 - [CONTRIBUTING.md](CONTRIBUTING.md) explains how to contribute.
 - [SECURITY.md](SECURITY.md) explains how to report security issues.
 - [PRIVACY.md](PRIVACY.md) documents the privacy model.
