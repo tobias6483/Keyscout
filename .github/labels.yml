@@ -22,3 +22,27 @@
 - name: swift
   color: f05138
   description: Swift or SwiftUI implementation
+- name: needs-triage
+  color: ededed
+  description: Needs maintainer review before a more specific label is known
+- name: area:scanner
+  color: 1d76db
+  description: Accessibility scanning, menu traversal, and app shortcut discovery
+- name: area:generator
+  color: 0e8a16
+  description: Unused shortcut generation and reserved shortcut handling
+- name: area:mapping
+  color: fbca04
+  description: Curated mappings, manual mappings, imports, exports, and JSON shortcut data
+- name: area:menu-bar
+  color: 9467bd
+  description: Menu bar UX, status text, actions, and shortcut list views
+- name: area:docs
+  color: 0075ca
+  description: Documentation, README, roadmap, changelog, and contributor guidance
+- name: area:release
+  color: 5319e7
+  description: Build, packaging, artifacts, signing, notarization, or distribution work
+- name: privacy-review
+  color: b60205
+  description: Touches permissions, privacy-sensitive behavior, security, or local data handling

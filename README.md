@@ -17,6 +17,7 @@ Implemented:
 - JSON export for the latest shortcut catalog
 - Unit tests for shortcut generation, conflict lookup, and JSON round trips
 - GitHub Actions build and test workflow
+- GitHub issue triage and unsigned app artifact workflows
 
 Planned:
 
@@ -94,8 +95,12 @@ The local app bundle is unsigned. See [docs/development.md](docs/development.md)
 - [SECURITY.md](SECURITY.md) explains how to report security issues.
 - [PRIVACY.md](PRIVACY.md) documents the privacy model.
 - [ROADMAP.md](ROADMAP.md) tracks planned milestones.
+- [CHANGELOG.md](CHANGELOG.md) tracks unreleased and released changes.
 - [docs/requirements.md](docs/requirements.md) tracks MVP coverage.
 - [docs/architecture.md](docs/architecture.md) explains the current code shape.
+- [docs/development.md](docs/development.md) explains local development.
+- [docs/release.md](docs/release.md) explains release and artifact status.
+- [docs/triage.md](docs/triage.md) explains issue labels and automation.
 
 ## License
 

@@ -1,0 +1,37 @@
+name: App Artifact
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-app-artifact:
+    name: Build App Artifact
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Swift version
+        run: swift --version
+
+      - name: Build unsigned app bundle
+        run: scripts/build_app.sh
+
+      - name: Create unsigned artifact
+        run: |
+          mkdir -p dist/artifacts
+          ditto -c -k --keepParent dist/KeyScout.app dist/artifacts/KeyScout.app.zip
+          shasum -a 256 dist/artifacts/KeyScout.app.zip > dist/artifacts/KeyScout.app.zip.sha256
+
+      - name: Upload unsigned app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeyScout-unsigned-app
+          path: |
+            dist/artifacts/KeyScout.app.zip
+            dist/artifacts/KeyScout.app.zip.sha256
+          if-no-files-found: error

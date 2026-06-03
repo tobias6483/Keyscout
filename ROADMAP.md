@@ -11,6 +11,10 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Privacy policy: complete
 - GitHub issue and pull request templates: complete
 - Branch protection: complete
+- Changelog: complete
+- Issue triage workflow and docs: complete
+- Release docs and v0.1 checklist drafts: complete
+- Unsigned app artifact workflow: complete
 
 ## Phase 1: Research Prototype
 
@@ -46,6 +50,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Documentation for permissions
 - Contributor guide for shortcut mappings
 - Known limitations page
+- Manual app QA recorded against the v0.1 checklist
 
 ## Later Ideas
 

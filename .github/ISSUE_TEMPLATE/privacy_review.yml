@@ -1,0 +1,57 @@
+name: Privacy review
+description: Review permission-sensitive behavior before implementation
+title: "[Privacy Review]: "
+labels:
+  - privacy-review
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What sensitive behavior, permission, or data handling is being proposed?
+    validations:
+      required: true
+  - type: dropdown
+    id: sensitive-area
+    attributes:
+      label: Sensitive area
+      options:
+        - Accessibility permissions
+        - Shortcut mapping data
+        - Local storage
+        - JSON export/import
+        - Networking
+        - Analytics or telemetry
+        - Crash reporting or diagnostics
+        - Background execution
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: user-control
+    attributes:
+      label: User control
+      description: How will users enable, disable, inspect, export, or clear this behavior?
+    validations:
+      required: true
+  - type: textarea
+    id: data-handling
+    attributes:
+      label: Data handling
+      description: What data is read, stored, exported, or transmitted, and where?
+    validations:
+      required: true
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals
+      description: List behavior that must not be added, such as tracking, telemetry, cloud upload, or hidden collection.
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Tests and QA
+      description: What automated tests and manual QA are required before release?
+    validations:
+      required: true
