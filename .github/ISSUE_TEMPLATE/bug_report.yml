@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a problem with KeyScout
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve KeyScout.
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      placeholder: "Example: macOS 15.5"
+    validations:
+      required: true
+  - type: input
+    id: keyscout-version
+    attributes:
+      label: KeyScout version or commit
+      placeholder: "Example: 0.1.0 or 34c2d3d"
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the issue and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Scan ...
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: shortcut-context
+    attributes:
+      label: Shortcut context
+      description: Include app name, app version, shortcut combination, and whether the shortcut was detected, imported, or manually entered.
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Add screenshots, logs, or notes. Remove private data before sharing.
+    validations:
+      required: false
