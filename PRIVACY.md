@@ -27,7 +27,7 @@ KeyScout should not:
 
 ## Accessibility Permissions
 
-KeyScout may need macOS Accessibility permissions to inspect app menus and discover shortcuts. Those permissions should be requested only when needed, and the app should explain what it needs and why.
+KeyScout may need macOS Accessibility permissions to inspect app menus and discover shortcuts. The app checks whether this permission is available before scanning, explains when it is missing, and provides a menu action that opens macOS Accessibility settings. Users must still enable the permission manually in System Settings.
 
 ## Exports
 

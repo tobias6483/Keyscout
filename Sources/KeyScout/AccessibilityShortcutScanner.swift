@@ -3,6 +3,10 @@ import ApplicationServices
 import Foundation
 
 final class AccessibilityShortcutScanner {
+    var isProcessTrusted: Bool {
+        AXIsProcessTrusted()
+    }
+
     func scanFrontmostApplication() -> ShortcutCatalog {
         guard let application = NSWorkspace.shared.frontmostApplication else {
             return ShortcutCatalog(shortcuts: [])

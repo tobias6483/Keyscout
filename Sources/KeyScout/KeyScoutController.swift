@@ -7,18 +7,42 @@ final class KeyScoutController {
     private let generator = ShortcutGenerator()
     private let presenter = ShortcutListPresenter()
     private let mappingLibrary: ShortcutMappingLibrary
+    private let isAccessibilityTrusted: () -> Bool
     private var latestCatalog = ShortcutCatalog(shortcuts: [])
 
-    init(mappingLibrary: ShortcutMappingLibrary = .builtIn) {
+    init(
+        mappingLibrary: ShortcutMappingLibrary = .builtIn,
+        isAccessibilityTrusted: @escaping () -> Bool = { AccessibilityShortcutScanner().isProcessTrusted }
+    ) {
         self.mappingLibrary = mappingLibrary
+        self.isAccessibilityTrusted = isAccessibilityTrusted
     }
 
     func scanFrontmostApplication() -> ShortcutCatalog {
+        guard hasAccessibilityPermission else {
+            latestCatalog = ShortcutCatalog(shortcuts: [])
+            return latestCatalog
+        }
+
         latestCatalog = mappingLibrary.mergedCatalog(with: scanner.scanFrontmostApplication())
         return latestCatalog
     }
 
+    var hasAccessibilityPermission: Bool {
+        isAccessibilityTrusted()
+    }
+
+    var accessibilityPermissionSummary: String {
+        hasAccessibilityPermission
+            ? "Accessibility permission ready"
+            : "Accessibility permission needed to scan app menus"
+    }
+
     func generatedShortcutSummary() -> String {
+        guard hasAccessibilityPermission else {
+            return accessibilityPermissionSummary
+        }
+
         let catalog = scanFrontmostApplication()
 
         guard let shortcut = generator.firstUnusedShortcut(in: catalog) else {

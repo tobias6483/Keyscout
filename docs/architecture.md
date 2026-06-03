@@ -6,7 +6,7 @@ KeyScout is starting with a small native macOS architecture.
 
 - `AppDelegate` owns the menu bar status item and menu actions.
 - `KeyScoutController` coordinates scanning, shortcut generation, conflict
-  lookup, and JSON export.
+  lookup, Accessibility permission status, and JSON export.
 
 ## Core Model
 
@@ -29,6 +29,10 @@ KeyScout is starting with a small native macOS architecture.
 `AccessibilityShortcutScanner` uses macOS Accessibility APIs to inspect the
 frontmost application's menu bar. This is intentionally best-effort because not
 all shortcuts are exposed reliably by apps or the OS.
+
+`KeyScoutController` checks Accessibility trust before scan or generation
+actions. `AppDelegate` shows the permission status in the menu and can open the
+macOS Accessibility settings pane.
 
 Future scanner work should separate:
 

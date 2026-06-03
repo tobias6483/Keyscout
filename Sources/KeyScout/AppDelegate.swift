@@ -28,6 +28,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let statusItem = NSMenuItem(title: status, action: nil, keyEquivalent: "")
         statusItem.isEnabled = false
         menu.addItem(statusItem)
+
+        if !controller.hasAccessibilityPermission {
+            let permission = NSMenuItem(title: controller.accessibilityPermissionSummary, action: nil, keyEquivalent: "")
+            permission.isEnabled = false
+            menu.addItem(permission)
+
+            menu.addItem(
+                NSMenuItem(
+                    title: "Open Accessibility Settings",
+                    action: #selector(openAccessibilitySettings),
+                    keyEquivalent: ""
+                )
+            )
+        }
+
         menu.addItem(.separator())
 
         let shortcutsMenuItem = NSMenuItem(title: "Scanned Shortcuts", action: nil, keyEquivalent: "")
@@ -98,6 +113,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func scanFrontmostApp() {
+        guard controller.hasAccessibilityPermission else {
+            updateStatus(controller.accessibilityPermissionSummary)
+            return
+        }
+
         let catalog = controller.scanFrontmostApplication()
         updateStatus("Scanned \(catalog.shortcuts.count) shortcuts")
     }
@@ -113,6 +133,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         } catch {
             updateStatus("Export failed: \(error.localizedDescription)")
         }
+    }
+
+    @objc private func openAccessibilitySettings() {
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") else {
+            updateStatus("Could not open Accessibility settings")
+            return
+        }
+
+        NSWorkspace.shared.open(url)
+        updateStatus("Enable KeyScout in Accessibility settings")
     }
 
     private func updateStatus(_ status: String) {
