@@ -25,6 +25,10 @@ struct ShortcutMappingLibrary: Sendable {
         catalog.merging(self.catalog(matching: catalog))
     }
 
+    func merging(_ other: ShortcutMappingLibrary) -> ShortcutMappingLibrary {
+        ShortcutMappingLibrary(shortcuts: Array(Set(shortcuts + other.shortcuts)))
+    }
+
     static let builtIn = ShortcutMappingLibrary(shortcuts: [
         AppShortcut(
             appName: "Finder",

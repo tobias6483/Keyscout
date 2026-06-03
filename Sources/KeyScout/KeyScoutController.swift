@@ -6,8 +6,9 @@ final class KeyScoutController {
     private let scanner = AccessibilityShortcutScanner()
     private let generator = ShortcutGenerator()
     private let presenter = ShortcutListPresenter()
-    private let mappingLibrary: ShortcutMappingLibrary
+    private var mappingLibrary: ShortcutMappingLibrary
     private let isAccessibilityTrusted: () -> Bool
+    private var latestScannedCatalog = ShortcutCatalog(shortcuts: [])
     private var latestCatalog = ShortcutCatalog(shortcuts: [])
 
     init(
@@ -20,11 +21,13 @@ final class KeyScoutController {
 
     func scanFrontmostApplication() -> ShortcutCatalog {
         guard hasAccessibilityPermission else {
+            latestScannedCatalog = ShortcutCatalog(shortcuts: [])
             latestCatalog = ShortcutCatalog(shortcuts: [])
             return latestCatalog
         }
 
-        latestCatalog = mappingLibrary.mergedCatalog(with: scanner.scanFrontmostApplication())
+        latestScannedCatalog = scanner.scanFrontmostApplication()
+        latestCatalog = mappingLibrary.mergedCatalog(with: latestScannedCatalog)
         return latestCatalog
     }
 
@@ -58,6 +61,22 @@ final class KeyScoutController {
 
     func latestShortcutRows() -> [ShortcutMenuRow] {
         presenter.menuRows(for: latestCatalog)
+    }
+
+    func latestShortcutListRows(filter: ShortcutListFilter = ShortcutListFilter()) -> [ShortcutListRow] {
+        presenter.listRows(for: latestCatalog, filter: filter)
+    }
+
+    var latestShortcutCount: Int {
+        latestCatalog.shortcuts.count
+    }
+
+    func importShortcutMappings(from url: URL) throws -> Int {
+        let data = try Data(contentsOf: url)
+        let catalog = try ShortcutJSONStore.decode(data)
+        mappingLibrary = mappingLibrary.merging(ShortcutMappingLibrary(shortcuts: catalog.shortcuts))
+        latestCatalog = mappingLibrary.mergedCatalog(with: latestScannedCatalog)
+        return catalog.shortcuts.count
     }
 
     func conflictSummary(for shortcut: KeyboardShortcut) -> String {

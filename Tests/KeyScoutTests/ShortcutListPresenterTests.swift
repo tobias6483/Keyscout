@@ -50,4 +50,39 @@ struct ShortcutListPresenterTests {
 
         #expect(rows.last == ShortcutMenuRow(title: "1 more shortcut", detail: "Export JSON to inspect the full scan"))
     }
+
+    @Test("filters list rows by query and source")
+    func filtersListRows() {
+        let catalog = ShortcutCatalog(shortcuts: [
+            AppShortcut(
+                appName: "Safari",
+                bundleIdentifier: "com.apple.Safari",
+                menuPath: ["File", "New Window"],
+                shortcut: KeyboardShortcut(modifiers: [.command], key: "N"),
+                source: .accessibility
+            ),
+            AppShortcut(
+                appName: "Safari",
+                bundleIdentifier: "com.apple.Safari",
+                menuPath: ["Develop", "Show Web Inspector"],
+                shortcut: KeyboardShortcut(modifiers: [.command, .option], key: "I"),
+                source: .curated
+            )
+        ])
+
+        let rows = ShortcutListPresenter().listRows(
+            for: catalog,
+            filter: ShortcutListFilter(query: "inspector", source: .curated)
+        )
+
+        #expect(rows == [
+            ShortcutListRow(
+                appName: "Safari",
+                shortcut: "⌥⌘I",
+                command: "Show Web Inspector",
+                menuPath: "Develop > Show Web Inspector",
+                source: "curated"
+            )
+        ])
+    }
 }

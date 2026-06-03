@@ -32,11 +32,19 @@ shows a compact limited view of the latest scan; export JSON to inspect the full
 catalog. Built-in curated mappings are merged into the latest catalog when they
 match the scanned app name or bundle identifier.
 
+Use `Open Shortcut List` for a searchable native table with source filtering.
+Use `Import Mapping JSON` to load a KeyScout catalog file into the in-memory
+mapping library for the current app session. Imported mappings merge with future
+scans by app name or bundle identifier.
+
 The exported catalog shape is documented in [json-schema.md](json-schema.md),
 with a sample file at [examples/sample-catalog.json](examples/sample-catalog.json).
 
 Reserved shortcut defaults are documented in
 [reserved-shortcuts.md](reserved-shortcuts.md).
+
+Known scanner and import limitations are documented in
+[known-limitations.md](known-limitations.md).
 
 ## Local App Bundle
 

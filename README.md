@@ -14,7 +14,9 @@ Implemented:
 - Best-effort frontmost app shortcut scan through macOS Accessibility APIs
 - Menu status for missing Accessibility permission with settings shortcut
 - Scanned shortcut submenu for browsing the latest frontmost-app scan
+- Native shortcut list window with search and source filtering
 - Built-in curated shortcut mapping library for supplementing scans
+- JSON import for curated/manual shortcut mappings
 - Deterministic unused shortcut generator
 - Conservative reserved shortcut defaults for common macOS/app combinations
 - Shortcut conflict lookup
@@ -26,9 +28,8 @@ Implemented:
 Planned:
 
 - Global hotkey detection beyond app menus
-- External curated/manual shortcut mapping imports
-- Rich shortcut list window or popover beyond the current menu submenu
-- Curated shortcut mapping import workflow
+- Persistent curated/manual shortcut mapping imports
+- Conflict-focused warning UI beyond menu status text
 - Signed app release workflow
 
 ## MVP
@@ -103,6 +104,8 @@ The local app bundle is unsigned. See [docs/development.md](docs/development.md)
 - [docs/requirements.md](docs/requirements.md) tracks MVP coverage.
 - [docs/architecture.md](docs/architecture.md) explains the current code shape.
 - [docs/development.md](docs/development.md) explains local development.
+- [docs/known-limitations.md](docs/known-limitations.md) explains current
+  scanning, import, suggestion, and release limitations.
 - [docs/json-schema.md](docs/json-schema.md) documents exported shortcut
   catalogs.
 - [docs/reserved-shortcuts.md](docs/reserved-shortcuts.md) documents default
