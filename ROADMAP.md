@@ -20,7 +20,8 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 
 - Explore macOS Accessibility APIs for reading menu shortcuts: initial
   frontmost-app scanner implemented
-- Document what can and cannot be detected reliably
+- Document what can and cannot be detected reliably: initial known limitations
+  page complete
 - Define shortcut normalization rules: initial implementation complete
 - Define reserved macOS shortcut handling: expanded initial defaults documented
 - Create sample JSON mapping format: initial Codable export and schema
@@ -37,6 +38,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Reserved shortcut categories: initial implementation complete
 - JSON import/export: initial implementation complete
 - Curated/manual mapping merge: initial implementation complete
+- Curated/manual mapping JSON import: initial implementation complete
 - Unit tests: initial coverage complete
 - JSON schema fixture test: initial coverage complete
 
@@ -44,10 +46,11 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 
 - Swift/AppKit menu bar app: initial scaffold complete
 - App scanner: initial frontmost-app scanner complete
-- Per-app shortcut list: initial menu submenu complete; richer view pending
+- Per-app shortcut list: menu submenu and searchable native window complete
 - Conflict warning UI: core logic complete; richer UI pending
 - Generate unused shortcut action: initial menu action complete
 - Local snapshot export: initial JSON export complete
+- Local mapping import: initial JSON import complete
 
 ## Phase 4: Alpha Release
 
@@ -56,7 +59,7 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 - Documentation for permissions
 - Accessibility permission menu status: initial implementation complete
 - Contributor guide for shortcut mappings
-- Known limitations page
+- Known limitations page: initial implementation complete
 - Manual app QA recorded against the v0.1 checklist
 
 ## Later Ideas

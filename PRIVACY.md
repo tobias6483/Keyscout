@@ -12,6 +12,7 @@ KeyScout may need to inspect or store:
 - Keyboard shortcut combinations
 - User-created shortcut snapshots
 - Exported JSON mapping files
+- Imported JSON mapping files
 
 ## Privacy Commitments
 
@@ -32,6 +33,9 @@ KeyScout may need macOS Accessibility permissions to inspect app menus and disco
 ## Exports
 
 JSON exports are user-owned files. Users are responsible for deciding whether exported shortcut data is safe to share publicly.
+
+Imported JSON mappings are read from user-selected local files and kept local.
+The current import flow stores mappings in memory for the app session.
 
 ## Future Changes
 

@@ -27,3 +27,7 @@
 - Expanded and documented conservative reserved shortcut defaults for unused
   shortcut generation.
 - Added menu status and settings shortcut for missing Accessibility permission.
+- Added a native shortcut list window with search and source filtering.
+- Added JSON import for curated/manual shortcut mappings.
+- Added a known limitations page for Accessibility scanning, imports,
+  suggestions, UI, and release status.

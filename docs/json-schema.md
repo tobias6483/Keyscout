@@ -89,6 +89,7 @@ Shortcut mapping contributions should use stable menu names and avoid private
 or organization-specific shortcuts. If a mapping was manually verified, set
 `source` to `manual`; future curated mapping files should use `curated`.
 
-KeyScout can merge curated/manual mappings with the latest scan when the mapping
-matches the scanned app name or bundle identifier. Conflicts are evaluated
-across all merged sources.
+KeyScout can import catalog JSON files and merge curated/manual mappings with
+future scans when the mapping matches the scanned app name or bundle identifier.
+Conflicts are evaluated across all merged sources. Imported mappings are
+session-scoped in the current MVP.

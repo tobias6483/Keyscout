@@ -81,6 +81,7 @@ Shortcut data is expected to be imperfect. If you contribute mappings:
 - Follow the exported catalog shape in
   [docs/json-schema.md](docs/json-schema.md).
 - Expect mappings to be matched by app name or bundle identifier.
+- Test mapping files locally with `Import Mapping JSON` when possible.
 - Avoid adding private, organization-specific, or personally identifying shortcut data.
 
 ## Issue Triage

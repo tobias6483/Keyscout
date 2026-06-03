@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import KeyScout
 
@@ -23,5 +24,32 @@ struct KeyScoutControllerTests {
 
         #expect(controller.hasAccessibilityPermission == true)
         #expect(controller.accessibilityPermissionSummary == "Accessibility permission ready")
+    }
+
+    @Test("imports mapping JSON")
+    func importsMappingJSON() throws {
+        let controller = KeyScoutController(
+            mappingLibrary: ShortcutMappingLibrary(),
+            isAccessibilityTrusted: { true }
+        )
+        let catalog = ShortcutCatalog(shortcuts: [
+            AppShortcut(
+                appName: "Example",
+                bundleIdentifier: "com.example.app",
+                menuPath: ["File", "Open"],
+                shortcut: KeyboardShortcut(modifiers: [.command], key: "O"),
+                source: .manual
+            )
+        ])
+        let data = try ShortcutJSONStore.encode(catalog)
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString)
+            .appendingPathExtension("json")
+        try data.write(to: url)
+        defer {
+            try? FileManager.default.removeItem(at: url)
+        }
+
+        #expect(try controller.importShortcutMappings(from: url) == 1)
     }
 }

@@ -1,9 +1,11 @@
 import AppKit
+import UniformTypeIdentifiers
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private let controller = KeyScoutController()
+    private var shortcutListWindowController: ShortcutListWindowController?
     private var statusText = "Ready"
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -56,6 +58,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 title: "Scan Frontmost App",
                 action: #selector(scanFrontmostApp),
                 keyEquivalent: "s"
+            )
+        )
+
+        menu.addItem(
+            NSMenuItem(
+                title: "Open Shortcut List",
+                action: #selector(openShortcutList),
+                keyEquivalent: "l"
+            )
+        )
+
+        menu.addItem(
+            NSMenuItem(
+                title: "Import Mapping JSON",
+                action: #selector(importMappingJSON),
+                keyEquivalent: "i"
             )
         )
 
@@ -120,10 +138,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let catalog = controller.scanFrontmostApplication()
         updateStatus("Scanned \(catalog.shortcuts.count) shortcuts")
+        shortcutListWindowController?.refresh()
     }
 
     @objc private func generateUnusedShortcut() {
         updateStatus(controller.generatedShortcutSummary())
+        shortcutListWindowController?.refresh()
     }
 
     @objc private func exportJSON() {
@@ -132,6 +152,39 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             updateStatus("Exported \(url.lastPathComponent) to Downloads")
         } catch {
             updateStatus("Export failed: \(error.localizedDescription)")
+        }
+    }
+
+    @objc private func openShortcutList() {
+        if shortcutListWindowController == nil {
+            shortcutListWindowController = ShortcutListWindowController(controller: controller)
+        }
+
+        shortcutListWindowController?.refresh()
+        shortcutListWindowController?.showWindow(nil)
+        shortcutListWindowController?.window?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @objc private func importMappingJSON() {
+        let panel = NSOpenPanel()
+        panel.title = "Import Mapping JSON"
+        panel.allowedContentTypes = [.json]
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+
+        let response = panel.runModal()
+
+        guard response == .OK, let url = panel.url else {
+            return
+        }
+
+        do {
+            let importedCount = try controller.importShortcutMappings(from: url)
+            updateStatus("Imported \(importedCount) shortcuts")
+            shortcutListWindowController?.refresh()
+        } catch {
+            updateStatus("Import failed: \(error.localizedDescription)")
         }
     }
 
