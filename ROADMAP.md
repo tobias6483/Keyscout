@@ -4,39 +4,40 @@ This roadmap is intentionally lightweight. KeyScout should stay focused on becom
 
 ## Phase 0: Project Setup
 
-- Project brief
-- MIT license
-- Contribution guide
-- Security policy
-- Privacy policy
-- GitHub issue and pull request templates
-- Branch protection
+- Project brief: complete
+- MIT license: complete
+- Contribution guide: complete
+- Security policy: complete
+- Privacy policy: complete
+- GitHub issue and pull request templates: complete
+- Branch protection: complete
 
 ## Phase 1: Research Prototype
 
-- Explore macOS Accessibility APIs for reading menu shortcuts
+- Explore macOS Accessibility APIs for reading menu shortcuts: initial
+  frontmost-app scanner implemented
 - Document what can and cannot be detected reliably
-- Define shortcut normalization rules
-- Define reserved macOS shortcut handling
-- Create sample JSON mapping format
+- Define shortcut normalization rules: initial implementation complete
+- Define reserved macOS shortcut handling: initial defaults implemented
+- Create sample JSON mapping format: initial Codable export implemented
 
 ## Phase 2: Core Logic
 
-- Shortcut model
-- Modifier and key normalization
-- Conflict detection
-- Unused shortcut generation
-- JSON import/export
-- Unit tests
+- Shortcut model: initial implementation complete
+- Modifier and key normalization: initial implementation complete
+- Conflict detection: initial implementation complete
+- Unused shortcut generation: initial implementation complete
+- JSON import/export: initial implementation complete
+- Unit tests: initial coverage complete
 
 ## Phase 3: macOS MVP
 
-- SwiftUI menu bar app
-- App scanner
+- Swift/AppKit menu bar app: initial scaffold complete
+- App scanner: initial frontmost-app scanner complete
 - Per-app shortcut list
-- Conflict warning UI
-- Generate unused shortcut action
-- Local snapshot export
+- Conflict warning UI: core logic complete; richer UI pending
+- Generate unused shortcut action: initial menu action complete
+- Local snapshot export: initial JSON export complete
 
 ## Phase 4: Alpha Release
 

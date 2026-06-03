@@ -24,13 +24,24 @@ KeyScout is currently in early planning. Good contributions at this stage includ
 
 ## Getting Started
 
-The app implementation has not started yet. Once the Swift project is scaffolded, this section should include:
+KeyScout is a Swift package. To build and test locally:
 
 ```sh
+swift build
 swift test
 ```
 
-and any required Xcode or Swift Package Manager setup.
+To run the menu bar app:
+
+```sh
+swift run KeyScout
+```
+
+To build a local unsigned app bundle:
+
+```sh
+scripts/build_app.sh
+```
 
 ## Pull Requests
 
