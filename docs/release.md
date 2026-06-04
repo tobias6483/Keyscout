@@ -6,11 +6,23 @@ need to be clear for early testers.
 
 ## Alpha Tester Install
 
-1. Download `KeyScout.app.zip` from the GitHub prerelease.
-2. Unzip it.
-3. Move `KeyScout.app` to `/Applications` if you want a stable app path.
-4. Open the exact `KeyScout.app` you downloaded and unzipped.
-5. Grant Accessibility permission to that exact app in System Settings.
+1. Download `KeyScout.app.zip` and `KeyScout.app.zip.sha256` from the latest
+   GitHub prerelease.
+2. Verify the checksum:
+
+   ```sh
+   shasum -a 256 -c KeyScout.app.zip.sha256
+   ```
+
+3. Unzip `KeyScout.app.zip`.
+4. Move `KeyScout.app` to `/Applications`.
+5. Open KeyScout from `/Applications`.
+6. Grant Accessibility permission to that exact app in System Settings.
+
+`/Applications` is the normal macOS location for installed apps. It gives
+KeyScout a more stable Accessibility permission identity and launch behavior,
+and it makes future updates easier to reason about. Running KeyScout from
+Downloads is only intended for a quick smoke test.
 
 The alpha artifact is ad-hoc signed, not Developer ID signed, and not notarized.
 macOS Gatekeeper warnings are expected.
