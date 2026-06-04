@@ -13,11 +13,15 @@ KeyScout is a native macOS Swift package.
 swift build
 ```
 
+Use `swift build` for compile checks and local package validation.
+
 ## Test
 
 ```sh
 swift test
 ```
+
+Use `swift test` for the automated Swift Testing suite.
 
 ## Run
 
@@ -32,6 +36,14 @@ bound to the running app identity. The SwiftPM debug binary launched by
 `swift run` is not the same identity as the ad-hoc signed
 `dist/KeyScout.app`, so granting Accessibility access to `KeyScout.app` will not
 make `swift run KeyScout` trusted for scanning.
+
+Do not use `swift run KeyScout` for Accessibility QA. Build and open the local
+`.app` bundle instead:
+
+```sh
+scripts/build_app.sh
+open dist/KeyScout.app
+```
 
 Use `Scan Frontmost App` to populate the `Scanned Shortcuts` submenu. The submenu
 shows a compact limited view of the latest scan; export JSON to inspect the full
@@ -89,6 +101,20 @@ message and an `Open Accessibility Settings` action.
 When testing locally, grant permission to the ad-hoc signed
 `/Users/tobias/Documents/Development/Keyscout/dist/KeyScout.app`, not to the
 SwiftPM debug executable created by `swift run`.
+
+macOS Accessibility permission is bound to the running app identity. The SwiftPM
+debug binary launched by `swift run` is not the same identity as
+`dist/KeyScout.app`, and it does not share Accessibility permission with the app
+bundle.
+
+If permission gets confused during local testing:
+
+1. Quit KeyScout.
+2. Open System Settings > Privacy & Security > Accessibility.
+3. Remove old KeyScout entries.
+4. Rebuild with `scripts/build_app.sh`.
+5. Open `dist/KeyScout.app`.
+6. Add or enable that exact app in Accessibility.
 
 The missing-permission path can be tested without granting access: launch
 `dist/KeyScout.app`, open the `⌘?` menu, verify the permission message, choose

@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-No unreleased changes yet.
+- Clarified install, run-mode, and Accessibility permission identity guidance
+  for release testers and contributors.
 
 ## v0.1.0-alpha - 2026-06-04
 
