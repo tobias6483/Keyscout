@@ -1,6 +1,6 @@
 # Release
 
-KeyScout v0.1.0-alpha is available as an ad-hoc signed prerelease artifact.
+KeyScout v0.1.1-alpha is available as an ad-hoc signed prerelease artifact.
 This document tracks the current release path and the limitations that still
 need to be clear for early testers.
 
@@ -155,7 +155,7 @@ Developer ID or notary secrets to untrusted fork pull request workflows.
 
 ## Signing And Notarization
 
-The published v0.1.0-alpha artifacts are ad-hoc signed, not Developer ID signed,
+The published v0.1.1-alpha artifacts are ad-hoc signed, not Developer ID signed,
 and not notarized. Users should expect a macOS Gatekeeper warning if they open
 that artifact directly.
 
