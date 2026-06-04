@@ -18,13 +18,13 @@ jobs:
       - name: Swift version
         run: swift --version
 
-      - name: Package unsigned app artifact
+      - name: Package ad-hoc signed app artifact
         run: scripts/package_app.sh
 
-      - name: Upload unsigned app artifact
+      - name: Upload ad-hoc signed app artifact
         uses: actions/upload-artifact@v4
         with:
-          name: KeyScout-unsigned-app
+          name: KeyScout-ad-hoc-signed-app
           path: |
             dist/artifacts/KeyScout.app.zip
             dist/artifacts/KeyScout.app.zip.sha256

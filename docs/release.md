@@ -5,7 +5,7 @@ release path so packaging work can be added deliberately.
 
 ## Local App Bundle
 
-Build a local unsigned app bundle:
+Build a local ad-hoc signed app bundle:
 
 ```sh
 scripts/build_app.sh
@@ -23,16 +23,18 @@ Run it with:
 open dist/KeyScout.app
 ```
 
-The bundle is intentionally local and unsigned for now. It includes:
+The bundle is intentionally local and ad-hoc signed for now. It includes:
 
 - `CFBundleIdentifier`: `dev.tobias.keyscout`
 - `LSUIElement`: enabled, so KeyScout appears as a menu bar app without a Dock icon
 - `LSMinimumSystemVersion`: macOS 14.0
 - Accessibility-related usage copy for local app menu inspection
+- Ad-hoc code signing so macOS binds the bundle identifier and Info.plist for
+  local permission testing
 
 ## Local Package Artifact
 
-Create a zipped unsigned app artifact and SHA-256 checksum:
+Create a zipped ad-hoc signed app artifact and SHA-256 checksum:
 
 ```sh
 scripts/package_app.sh
@@ -67,8 +69,8 @@ explicitly first keeps the release checklist easy to audit.
 
 ## GitHub App Artifact
 
-The `App Artifact` workflow builds the current unsigned app bundle on GitHub
-Actions, packages it as `KeyScout.app.zip`, writes
+The `App Artifact` workflow builds the current ad-hoc signed app bundle on
+GitHub Actions, packages it as `KeyScout.app.zip`, writes
 `KeyScout.app.zip.sha256`, and uploads both files as a workflow artifact for
 maintainer testing.
 
@@ -77,10 +79,11 @@ stable release channel are future work.
 
 ## Signing And Notarization
 
-Current v0.1 artifacts are unsigned and not notarized. Users should expect a
-macOS Gatekeeper warning if they open the artifact directly. Do not present the
-artifact as a stable public release until Developer ID signing and notarization
-are available or the unsigned status is explicitly accepted for an alpha.
+Current v0.1 artifacts are ad-hoc signed, not Developer ID signed, and not
+notarized. Users should expect a macOS Gatekeeper warning if they open the
+artifact directly. Do not present the artifact as a stable public release until
+Developer ID signing and notarization are available or the unsigned-alpha status
+is explicitly accepted.
 
 ## Future Release Work
 

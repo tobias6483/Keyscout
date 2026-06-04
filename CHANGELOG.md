@@ -15,7 +15,7 @@
   generation, and JSON import/export.
 - Added unit tests for shortcut generation, conflict lookup, and JSON round
   trips.
-- Added local unsigned `.app` bundle build script.
+- Added local ad-hoc signed `.app` bundle build script.
 - Added GitHub Actions `Swift Build and Test` workflow.
 - Added project-specific `AGENTS.md` with branch workflow and protection facts.
 - Added a `Scanned Shortcuts` menu bar submenu for browsing the latest
@@ -33,8 +33,8 @@
 - Added a known limitations page for Accessibility scanning, imports,
   suggestions, UI, and release status.
 - Added persistent local storage for imported curated/manual shortcut mappings.
-- Added unsigned app packaging with SHA-256 checksum generation for v0.1 release
-  preparation.
+- Added ad-hoc signed app packaging with SHA-256 checksum generation for v0.1
+  release preparation.
 - Recorded a v0.1 manual QA pass for launch, menu status, missing Accessibility
   permission behavior, shortcut list opening, JSON export, JSON import, invalid
   import errors, and local-only behavior.
