@@ -8,6 +8,9 @@ KeyScout is an open-source macOS menu bar app that helps you find unused keyboar
 
 KeyScout is in early MVP development.
 
+The first public prerelease is `v0.1.0-alpha`. It is intended for early testers:
+the app is ad-hoc signed, not Developer ID signed, and not notarized.
+
 Implemented:
 
 - Native Swift/AppKit menu bar scaffold
