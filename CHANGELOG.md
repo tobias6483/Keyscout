@@ -2,12 +2,18 @@
 
 ## Unreleased
 
+No unreleased changes yet.
+
+## v0.1.1-alpha - 2026-06-04
+
 - Clarified install, run-mode, and Accessibility permission identity guidance
   for release testers and contributors.
 - Added a more specific missing Accessibility permission message and a
   `Reveal KeyScout in Finder` menu action.
 - Added Developer ID signing and notarization-capable packaging scripts and
   GitHub artifact workflow configuration.
+- Documented that GitHub Actions release secrets are private and should only be
+  exposed to trusted release workflows.
 
 ## v0.1.0-alpha - 2026-06-04
 
