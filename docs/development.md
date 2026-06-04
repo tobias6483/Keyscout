@@ -38,6 +38,9 @@ library. Imported mappings are stored at
 `~/Library/Application Support/KeyScout/imported-mappings.json` and merge with
 future scans by app name or bundle identifier.
 
+Selecting a row in the shortcut list shows conflict detail for that shortcut,
+including matching app, command, and source rows from the latest catalog.
+
 During manual QA, remember that importing a mapping file does not populate the
 list by itself unless the imported shortcuts match the current or future scanned
 app name or bundle identifier. To test imported rows in the UI, scan a matching

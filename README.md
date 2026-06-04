@@ -14,7 +14,8 @@ Implemented:
 - Best-effort frontmost app shortcut scan through macOS Accessibility APIs
 - Menu status for missing Accessibility permission with settings shortcut
 - Scanned shortcut submenu for browsing the latest frontmost-app scan
-- Native shortcut list window with search and source filtering
+- Native shortcut list window with search, source filtering, and selected-row
+  conflict details
 - Built-in curated shortcut mapping library for supplementing scans
 - JSON import for curated/manual shortcut mappings
 - Persistent local storage for imported curated/manual mappings
@@ -29,7 +30,6 @@ Implemented:
 Planned:
 
 - Global hotkey detection beyond app menus
-- Conflict-focused warning UI beyond menu status text
 - Signed app release workflow
 
 ## MVP

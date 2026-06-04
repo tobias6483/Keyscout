@@ -6,6 +6,7 @@ final class ShortcutListWindowController: NSWindowController, NSSearchFieldDeleg
     private let searchField = NSSearchField()
     private let sourceFilter = NSPopUpButton()
     private let summaryLabel = NSTextField(labelWithString: "")
+    private let conflictLabel = NSTextField(wrappingLabelWithString: "Select a shortcut to inspect conflicts")
     private let tableView = NSTableView()
     private var rows: [ShortcutListRow] = []
 
@@ -64,6 +65,10 @@ final class ShortcutListWindowController: NSWindowController, NSSearchFieldDeleg
         return cell
     }
 
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        updateConflictDetail()
+    }
+
     @objc private func sourceFilterChanged() {
         reloadRows()
     }
@@ -96,6 +101,9 @@ final class ShortcutListWindowController: NSWindowController, NSSearchFieldDeleg
         summaryLabel.textColor = .secondaryLabelColor
         summaryLabel.lineBreakMode = .byTruncatingTail
 
+        conflictLabel.textColor = .secondaryLabelColor
+        conflictLabel.maximumNumberOfLines = 4
+
         controls.addArrangedSubview(searchField)
         controls.addArrangedSubview(sourceFilter)
         controls.addArrangedSubview(summaryLabel)
@@ -110,6 +118,7 @@ final class ShortcutListWindowController: NSWindowController, NSSearchFieldDeleg
 
         container.addArrangedSubview(controls)
         container.addArrangedSubview(scrollView)
+        container.addArrangedSubview(conflictLabel)
         contentView.addSubview(container)
 
         NSLayoutConstraint.activate([
@@ -147,6 +156,7 @@ final class ShortcutListWindowController: NSWindowController, NSSearchFieldDeleg
         rows = controller.latestShortcutListRows(filter: currentFilter)
         tableView.reloadData()
         summaryLabel.stringValue = "\(rows.count) of \(controller.latestShortcutCount) shortcuts"
+        updateConflictDetail()
     }
 
     private var currentFilter: ShortcutListFilter {
@@ -181,5 +191,29 @@ final class ShortcutListWindowController: NSWindowController, NSSearchFieldDeleg
         default:
             return ""
         }
+    }
+
+    private func updateConflictDetail() {
+        let selectedRow = tableView.selectedRow
+
+        guard rows.indices.contains(selectedRow) else {
+            conflictLabel.stringValue = rows.isEmpty
+                ? "No shortcuts match the current filter"
+                : "Select a shortcut to inspect conflicts"
+            return
+        }
+
+        let row = rows[selectedRow]
+        let conflicts = controller.conflictRows(for: row.keyboardShortcut)
+        let details = conflicts
+            .map { "\($0.appName) - \($0.command) - \($0.source)" }
+            .joined(separator: "\n")
+
+        conflictLabel.stringValue = [
+            controller.conflictDetail(for: row.keyboardShortcut),
+            details
+        ]
+        .filter { !$0.isEmpty }
+        .joined(separator: "\n")
     }
 }

@@ -6,7 +6,7 @@ KeyScout is starting with a small native macOS architecture.
 
 - `AppDelegate` owns the menu bar status item and menu actions.
 - `ShortcutListWindowController` owns the searchable native shortcut list
-  window.
+  window and selected-row conflict detail.
 - `KeyScoutController` coordinates scanning, shortcut generation, conflict
   lookup, Accessibility permission status, JSON import, and JSON export.
 
@@ -27,7 +27,8 @@ KeyScout is starting with a small native macOS architecture.
 - `ShortcutJSONStore` imports and exports catalog JSON documented in
   [json-schema.md](json-schema.md).
 - `ShortcutListPresenter` formats scanned shortcuts for compact menu display.
-  It also prepares filterable rows for the shortcut list window.
+  It also prepares filterable rows and conflict detail text for the shortcut
+  list window.
 
 ## Scanning
 

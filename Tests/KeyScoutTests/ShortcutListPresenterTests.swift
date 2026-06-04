@@ -78,11 +78,46 @@ struct ShortcutListPresenterTests {
         #expect(rows == [
             ShortcutListRow(
                 appName: "Safari",
+                keyboardShortcut: KeyboardShortcut(modifiers: [.command, .option], key: "I"),
                 shortcut: "⌥⌘I",
                 command: "Show Web Inspector",
                 menuPath: "Develop > Show Web Inspector",
                 source: "curated"
             )
         ])
+    }
+
+    @Test("formats conflict detail")
+    func formatsConflictDetail() {
+        let shortcut = KeyboardShortcut(modifiers: [.command, .shift], key: "K")
+        let catalog = ShortcutCatalog(shortcuts: [
+            AppShortcut(
+                appName: "Example Editor",
+                menuPath: ["Go", "Open Symbol"],
+                shortcut: shortcut,
+                source: .accessibility
+            ),
+            AppShortcut(
+                appName: "Example Editor",
+                menuPath: ["Tools", "Command Palette"],
+                shortcut: shortcut,
+                source: .manual
+            )
+        ])
+
+        #expect(
+            ShortcutListPresenter().conflictDetail(for: shortcut, in: catalog)
+                == "⇧⌘K has 2 conflicts: Example Editor: Open Symbol [accessibility]; Example Editor: Command Palette [manual]"
+        )
+    }
+
+    @Test("formats unused conflict detail")
+    func formatsUnusedConflictDetail() {
+        let shortcut = KeyboardShortcut(modifiers: [.command, .shift], key: "K")
+
+        #expect(
+            ShortcutListPresenter().conflictDetail(for: shortcut, in: ShortcutCatalog(shortcuts: []))
+                == "⇧⌘K looks unused in the latest catalog"
+        )
     }
 }
