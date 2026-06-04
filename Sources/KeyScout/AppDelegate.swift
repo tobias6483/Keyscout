@@ -4,7 +4,7 @@ import UniformTypeIdentifiers
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
-    private let controller = KeyScoutController()
+    private let controller = KeyScoutController(importedMappingStore: try? .applicationSupport())
     private var shortcutListWindowController: ShortcutListWindowController?
     private var statusText = "Ready"
 

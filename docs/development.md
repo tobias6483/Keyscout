@@ -33,9 +33,10 @@ catalog. Built-in curated mappings are merged into the latest catalog when they
 match the scanned app name or bundle identifier.
 
 Use `Open Shortcut List` for a searchable native table with source filtering.
-Use `Import Mapping JSON` to load a KeyScout catalog file into the in-memory
-mapping library for the current app session. Imported mappings merge with future
-scans by app name or bundle identifier.
+Use `Import Mapping JSON` to load a KeyScout catalog file into the local mapping
+library. Imported mappings are stored at
+`~/Library/Application Support/KeyScout/imported-mappings.json` and merge with
+future scans by app name or bundle identifier.
 
 During manual QA, remember that importing a mapping file does not populate the
 list by itself unless the imported shortcuts match the current or future scanned
@@ -73,6 +74,15 @@ The missing-permission path can be tested without granting access: launch
 `Scan Frontmost App`, and confirm the status still reports that Accessibility
 permission is needed. A full scan QA pass requires granting KeyScout
 Accessibility access in System Settings.
+
+## Reset Local Imported Mappings
+
+Imported mappings are local-only Application Support data. To reset them during
+development, quit KeyScout and remove:
+
+```sh
+rm -f ~/Library/Application\ Support/KeyScout/imported-mappings.json
+```
 
 ## GitHub Workflow
 

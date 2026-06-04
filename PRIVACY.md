@@ -35,7 +35,10 @@ KeyScout may need macOS Accessibility permissions to inspect app menus and disco
 JSON exports are user-owned files. Users are responsible for deciding whether exported shortcut data is safe to share publicly.
 
 Imported JSON mappings are read from user-selected local files and kept local.
-The current import flow stores mappings in memory for the app session.
+The current import flow stores merged imported mappings at
+`~/Library/Application Support/KeyScout/imported-mappings.json` so they survive
+app restarts. This file uses the documented local catalog JSON format and is not
+uploaded by KeyScout.
 
 ## Future Changes
 

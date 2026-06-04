@@ -17,6 +17,7 @@ Implemented:
 - Native shortcut list window with search and source filtering
 - Built-in curated shortcut mapping library for supplementing scans
 - JSON import for curated/manual shortcut mappings
+- Persistent local storage for imported curated/manual mappings
 - Deterministic unused shortcut generator
 - Conservative reserved shortcut defaults for common macOS/app combinations
 - Shortcut conflict lookup
@@ -28,7 +29,6 @@ Implemented:
 Planned:
 
 - Global hotkey detection beyond app menus
-- Persistent curated/manual shortcut mapping imports
 - Conflict-focused warning UI beyond menu status text
 - Signed app release workflow
 

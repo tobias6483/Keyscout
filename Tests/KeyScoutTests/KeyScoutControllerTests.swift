@@ -28,18 +28,24 @@ struct KeyScoutControllerTests {
 
     @Test("imports mapping JSON")
     func importsMappingJSON() throws {
+        let storeURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+            .appendingPathComponent("imported-mappings.json")
+        let store = ShortcutMappingStore(fileURL: storeURL)
         let controller = KeyScoutController(
             mappingLibrary: ShortcutMappingLibrary(),
+            importedMappingStore: store,
             isAccessibilityTrusted: { true }
         )
+        let shortcut = AppShortcut(
+            appName: "Example",
+            bundleIdentifier: "com.example.app",
+            menuPath: ["File", "Open"],
+            shortcut: KeyboardShortcut(modifiers: [.command], key: "O"),
+            source: .manual
+        )
         let catalog = ShortcutCatalog(shortcuts: [
-            AppShortcut(
-                appName: "Example",
-                bundleIdentifier: "com.example.app",
-                menuPath: ["File", "Open"],
-                shortcut: KeyboardShortcut(modifiers: [.command], key: "O"),
-                source: .manual
-            )
+            shortcut
         ])
         let data = try ShortcutJSONStore.encode(catalog)
         let url = FileManager.default.temporaryDirectory
@@ -48,8 +54,10 @@ struct KeyScoutControllerTests {
         try data.write(to: url)
         defer {
             try? FileManager.default.removeItem(at: url)
+            try? FileManager.default.removeItem(at: storeURL.deletingLastPathComponent())
         }
 
         #expect(try controller.importShortcutMappings(from: url) == 1)
+        #expect(try store.load().shortcuts == [shortcut])
     }
 }
