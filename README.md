@@ -88,6 +88,11 @@ swift run KeyScout
 
 KeyScout appears in the macOS menu bar as `⌘?`.
 
+Use `swift run KeyScout` only for a quick launch smoke test. macOS
+Accessibility permission is granted per app identity, and the SwiftPM debug
+binary is not the same identity as `dist/KeyScout.app`. To test shortcut
+scanning, build and open the local app bundle instead.
+
 ## Local App Bundle
 
 ```sh

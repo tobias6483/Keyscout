@@ -27,6 +27,12 @@ swift run KeyScout
 
 KeyScout appears in the macOS menu bar as `⌘?`.
 
+Use this command only for a quick launch smoke test. Accessibility permission is
+bound to the running app identity. The SwiftPM debug binary launched by
+`swift run` is not the same identity as the ad-hoc signed
+`dist/KeyScout.app`, so granting Accessibility access to `KeyScout.app` will not
+make `swift run KeyScout` trusted for scanning.
+
 Use `Scan Frontmost App` to populate the `Scanned Shortcuts` submenu. The submenu
 shows a compact limited view of the latest scan; export JSON to inspect the full
 catalog. Built-in curated mappings are merged into the latest catalog when they
@@ -66,12 +72,23 @@ The local app bundle is ad-hoc signed. It is useful for manual testing of menu
 bar behavior and macOS permissions, but it is not a Developer ID signed or
 notarized release artifact.
 
+Use this bundle for Accessibility QA:
+
+```sh
+scripts/build_app.sh
+open dist/KeyScout.app
+```
+
 ## Accessibility Permission
 
 Shortcut discovery uses macOS Accessibility APIs where possible. During manual
 testing, macOS may ask for Accessibility permission so KeyScout can inspect app
 menus. If permission is missing, the menu shows an Accessibility permission
 message and an `Open Accessibility Settings` action.
+
+When testing locally, grant permission to the ad-hoc signed
+`/Users/tobias/Documents/Development/Keyscout/dist/KeyScout.app`, not to the
+SwiftPM debug executable created by `swift run`.
 
 The missing-permission path can be tested without granting access: launch
 `dist/KeyScout.app`, open the `⌘?` menu, verify the permission message, choose
