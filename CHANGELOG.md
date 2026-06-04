@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+No unreleased changes yet.
+
+## v0.1.0-alpha - 2026-06-04
+
 - Started KeyScout as an open-source macOS unused hotkey finder.
 - Added OSS repository docs, MIT license, contribution guide, security policy,
   privacy policy, support guide, code of conduct, roadmap, issue templates, PR
