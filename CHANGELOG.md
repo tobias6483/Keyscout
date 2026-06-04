@@ -35,6 +35,7 @@
 - Added persistent local storage for imported curated/manual shortcut mappings.
 - Added ad-hoc signed app packaging with SHA-256 checksum generation for v0.1
   release preparation.
+- Fixed the menu bar `Quit` action so it is enabled and terminates KeyScout.
 - Recorded a v0.1 manual QA pass for launch, menu status, missing Accessibility
   permission behavior, shortcut list opening, JSON export, JSON import, invalid
   import errors, and local-only behavior.
