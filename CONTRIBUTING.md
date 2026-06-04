@@ -4,7 +4,7 @@ Thanks for helping build KeyScout. This project is intended to be a small, nativ
 
 ## Project Stage
 
-KeyScout is currently in early planning. Good contributions at this stage include:
+KeyScout is currently in early MVP/alpha development. Good contributions at this stage include:
 
 - Product feedback on the MVP and open questions
 - Research into macOS Accessibility APIs and shortcut discovery
@@ -37,7 +37,7 @@ To run the menu bar app:
 swift run KeyScout
 ```
 
-To build a local unsigned app bundle:
+To build a local ad-hoc signed app bundle:
 
 ```sh
 scripts/build_app.sh
