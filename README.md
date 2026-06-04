@@ -71,13 +71,25 @@ Planned:
 
 ## Try The Alpha Release
 
-1. Download `KeyScout.app.zip` from the latest prerelease.
-2. Unzip it.
-3. Move `KeyScout.app` to `/Applications` if you want a stable app path.
-4. Open the exact `KeyScout.app` you downloaded and unzipped.
-5. In the `⌘?` menu, choose `Open Accessibility Settings`.
-6. Enable Accessibility for that exact `KeyScout.app`.
-7. Use `Scan Frontmost App`.
+1. Download `KeyScout.app.zip` and `KeyScout.app.zip.sha256` from the latest
+   prerelease.
+2. Verify the checksum:
+
+   ```sh
+   shasum -a 256 -c KeyScout.app.zip.sha256
+   ```
+
+3. Unzip `KeyScout.app.zip`.
+4. Move `KeyScout.app` to `/Applications`.
+5. Open KeyScout from `/Applications`.
+6. In the `⌘?` menu, choose `Open Accessibility Settings`.
+7. Enable Accessibility for that exact `KeyScout.app`.
+8. Use `Scan Frontmost App`.
+
+`/Applications` is the normal macOS location for installed apps. It gives
+KeyScout a more stable Accessibility permission identity and launch behavior,
+and it makes future updates easier to reason about. Running KeyScout from
+Downloads is only intended for a quick smoke test.
 
 If KeyScout still says Accessibility permission is needed, remove old KeyScout
 entries from System Settings > Privacy & Security > Accessibility, then add the
