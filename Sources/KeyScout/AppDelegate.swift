@@ -36,6 +36,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             permission.isEnabled = false
             menu.addItem(permission)
 
+            let detail = NSMenuItem(title: controller.accessibilityPermissionDetail, action: nil, keyEquivalent: "")
+            detail.isEnabled = false
+            menu.addItem(detail)
+
             menu.addItem(
                 NSMenuItem(
                     title: "Open Accessibility Settings",
@@ -45,6 +49,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 .targeting(self)
             )
         }
+
+        menu.addItem(
+            NSMenuItem(
+                title: "Reveal KeyScout in Finder",
+                action: #selector(revealKeyScoutInFinder),
+                keyEquivalent: ""
+            )
+            .targeting(self)
+        )
 
         menu.addItem(.separator())
 
@@ -200,7 +213,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         NSWorkspace.shared.open(url)
-        updateStatus("Enable KeyScout in Accessibility settings")
+        updateStatus(controller.accessibilityPermissionSummary)
+    }
+
+    @objc private func revealKeyScoutInFinder() {
+        NSWorkspace.shared.activateFileViewerSelecting([Bundle.main.bundleURL])
+        updateStatus("Revealed KeyScout in Finder")
     }
 
     private func updateStatus(_ status: String) {

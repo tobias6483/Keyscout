@@ -78,10 +78,10 @@ Known suggestion gaps:
   a compact MVP table.
 - Conflict detail is driven by selecting an existing row; there is no arbitrary
   shortcut input/parser yet.
-- Builds are ad-hoc signed for local QA, but not Developer ID signed or
-  notarized unless release automation changes.
-- Developer ID signing and notarization are future work and should reduce
-  Accessibility and Gatekeeper friction for regular users.
+- Local development builds are ad-hoc signed by default. The release pipeline
+  can produce Developer ID signed, notarized artifacts once maintainer
+  certificate and notary secrets are configured.
+- The published v0.1.0-alpha artifact remains ad-hoc signed and not notarized.
 - Manual QA has covered the missing Accessibility permission path, successful
   Finder and Safari Accessibility scans, JSON import/export, persistent import
   storage, search/source filtering, and selected-row conflict detail.

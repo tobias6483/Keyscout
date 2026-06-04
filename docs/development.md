@@ -96,7 +96,8 @@ open dist/KeyScout.app
 Shortcut discovery uses macOS Accessibility APIs where possible. During manual
 testing, macOS may ask for Accessibility permission so KeyScout can inspect app
 menus. If permission is missing, the menu shows an Accessibility permission
-message and an `Open Accessibility Settings` action.
+message, an explanation that `swift run` uses a different app identity, an
+`Open Accessibility Settings` action, and a `Reveal KeyScout in Finder` action.
 
 When testing locally, grant permission to the ad-hoc signed
 `/Users/tobias/Documents/Development/Keyscout/dist/KeyScout.app`, not to the
@@ -121,6 +122,29 @@ The missing-permission path can be tested without granting access: launch
 `Scan Frontmost App`, and confirm the status still reports that Accessibility
 permission is needed. A full scan QA pass requires granting KeyScout
 Accessibility access in System Settings.
+
+## Developer ID Release QA
+
+Local ad-hoc signing remains the default for development:
+
+```sh
+scripts/package_app.sh
+```
+
+Maintainers with Developer ID credentials can test the release signing flow:
+
+```sh
+KEYSCOUT_CODESIGN_IDENTITY="Developer ID Application: Example (TEAMID)" \
+KEYSCOUT_NOTARIZE=1 \
+KEYSCOUT_NOTARY_PROFILE=keyscout-notary \
+scripts/package_app.sh
+```
+
+This signs with hardened runtime and timestamping, submits the app to Apple's
+notary service, staples the ticket to `dist/KeyScout.app`, packages
+`KeyScout.app.zip`, and writes the SHA-256 checksum. The same flow can use
+`KEYSCOUT_NOTARY_APPLE_ID`, `KEYSCOUT_NOTARY_TEAM_ID`, and
+`KEYSCOUT_NOTARY_PASSWORD` instead of `KEYSCOUT_NOTARY_PROFILE`.
 
 ## Reset Local Imported Mappings
 
