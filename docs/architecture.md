@@ -18,6 +18,8 @@ KeyScout is starting with a small native macOS architecture.
 - `ShortcutCatalog` stores scanned shortcuts and answers conflict queries.
 - `ShortcutMappingLibrary` filters curated/manual mappings for the scanned app
   and merges them into the latest catalog.
+- `ShortcutMappingStore` persists imported curated/manual mappings as local
+  catalog JSON in Application Support.
 - `ShortcutGenerator` searches deterministic candidate combinations and skips
   known conflicts and reserved shortcuts.
 - `ReservedShortcutDefaults` groups conservative default reservations for
@@ -37,9 +39,10 @@ all shortcuts are exposed reliably by apps or the OS.
 actions. `AppDelegate` shows the permission status in the menu and can open the
 macOS Accessibility settings pane.
 
-Imported mapping JSON is decoded with `ShortcutJSONStore`, stored in the
-in-memory `ShortcutMappingLibrary`, and merged with scans by app name or bundle
-identifier. Imported mappings are not persisted across app launches yet.
+Imported mapping JSON is decoded with `ShortcutJSONStore`, merged into the
+controller's imported `ShortcutMappingLibrary`, persisted with
+`ShortcutMappingStore`, and merged with scans by app name or bundle identifier.
+Built-in mappings remain separate from imported mappings.
 
 Future scanner work should separate:
 

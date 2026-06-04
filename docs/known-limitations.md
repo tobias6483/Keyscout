@@ -32,13 +32,13 @@ Known scanning gaps:
 Current import behavior:
 
 - Imports KeyScout catalog JSON files.
-- Keeps imported data local and in memory for the current app session.
+- Keeps imported data local in
+  `~/Library/Application Support/KeyScout/imported-mappings.json`.
 - Merges imported shortcuts with future scans when app name or bundle identifier
   matches.
 
 Known import gaps:
 
-- Imported mappings are not persisted across launches yet.
 - Imported mappings do not appear in the list immediately after import unless
   they match the latest scanned app name or bundle identifier.
 - There is no mapping validation UI beyond JSON decode errors.

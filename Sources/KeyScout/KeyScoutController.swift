@@ -6,16 +6,21 @@ final class KeyScoutController {
     private let scanner = AccessibilityShortcutScanner()
     private let generator = ShortcutGenerator()
     private let presenter = ShortcutListPresenter()
-    private var mappingLibrary: ShortcutMappingLibrary
+    private let builtInMappingLibrary: ShortcutMappingLibrary
+    private var importedMappingLibrary: ShortcutMappingLibrary
+    private let importedMappingStore: ShortcutMappingStore?
     private let isAccessibilityTrusted: () -> Bool
     private var latestScannedCatalog = ShortcutCatalog(shortcuts: [])
     private var latestCatalog = ShortcutCatalog(shortcuts: [])
 
     init(
         mappingLibrary: ShortcutMappingLibrary = .builtIn,
+        importedMappingStore: ShortcutMappingStore? = nil,
         isAccessibilityTrusted: @escaping () -> Bool = { AccessibilityShortcutScanner().isProcessTrusted }
     ) {
-        self.mappingLibrary = mappingLibrary
+        self.builtInMappingLibrary = mappingLibrary
+        self.importedMappingStore = importedMappingStore
+        self.importedMappingLibrary = (try? importedMappingStore?.load()) ?? ShortcutMappingLibrary()
         self.isAccessibilityTrusted = isAccessibilityTrusted
     }
 
@@ -27,7 +32,7 @@ final class KeyScoutController {
         }
 
         latestScannedCatalog = scanner.scanFrontmostApplication()
-        latestCatalog = mappingLibrary.mergedCatalog(with: latestScannedCatalog)
+        latestCatalog = combinedMappingLibrary.mergedCatalog(with: latestScannedCatalog)
         return latestCatalog
     }
 
@@ -74,8 +79,9 @@ final class KeyScoutController {
     func importShortcutMappings(from url: URL) throws -> Int {
         let data = try Data(contentsOf: url)
         let catalog = try ShortcutJSONStore.decode(data)
-        mappingLibrary = mappingLibrary.merging(ShortcutMappingLibrary(shortcuts: catalog.shortcuts))
-        latestCatalog = mappingLibrary.mergedCatalog(with: latestScannedCatalog)
+        importedMappingLibrary = importedMappingLibrary.merging(ShortcutMappingLibrary(shortcuts: catalog.shortcuts))
+        try importedMappingStore?.save(importedMappingLibrary)
+        latestCatalog = combinedMappingLibrary.mergedCatalog(with: latestScannedCatalog)
         return catalog.shortcuts.count
     }
 
@@ -96,5 +102,9 @@ final class KeyScoutController {
         let url = directory.appendingPathComponent("keyscout-shortcuts.json")
         try data.write(to: url, options: .atomic)
         return url
+    }
+
+    private var combinedMappingLibrary: ShortcutMappingLibrary {
+        builtInMappingLibrary.merging(importedMappingLibrary)
     }
 }
