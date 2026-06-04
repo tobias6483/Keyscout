@@ -1,7 +1,32 @@
 # Release
 
-KeyScout does not have a public release yet. This document defines the initial
-release path so packaging work can be added deliberately.
+KeyScout v0.1.0-alpha is available as an ad-hoc signed prerelease artifact.
+This document tracks the current release path and the limitations that still
+need to be clear for early testers.
+
+## Alpha Tester Install
+
+1. Download `KeyScout.app.zip` from the GitHub prerelease.
+2. Unzip it.
+3. Move `KeyScout.app` to `/Applications` if you want a stable app path.
+4. Open the exact `KeyScout.app` you downloaded and unzipped.
+5. Grant Accessibility permission to that exact app in System Settings.
+
+The alpha artifact is ad-hoc signed, not Developer ID signed, and not notarized.
+macOS Gatekeeper warnings are expected.
+
+### Permission Identity
+
+macOS treats each app path and signing identity separately for Accessibility.
+Release testers should grant Accessibility to the downloaded and unzipped
+`KeyScout.app`. Contributors should grant Accessibility to
+`/Users/tobias/Documents/Development/Keyscout/dist/KeyScout.app`. Rebuilding,
+moving, or running a different binary may require removing old Accessibility
+entries and adding the exact app again.
+
+`swift run KeyScout` launches a SwiftPM debug executable, not `KeyScout.app`.
+Nobody should expect it to share Accessibility permission with the release or
+local `.app` bundle.
 
 ## Local App Bundle
 

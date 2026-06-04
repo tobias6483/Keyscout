@@ -26,6 +26,15 @@ Known scanning gaps:
   read directly yet.
 - Permission is user-controlled. KeyScout can open Accessibility settings, but
   the user must enable access manually.
+- Accessibility permission is bound to the exact app identity macOS sees.
+  Release testers should grant permission to the downloaded and unzipped
+  `KeyScout.app`; contributors should grant permission to
+  `/Users/tobias/Documents/Development/Keyscout/dist/KeyScout.app`.
+- `swift run KeyScout` launches a different SwiftPM debug executable and is not
+  the supported mode for Accessibility scanning. It does not share
+  Accessibility permission with `KeyScout.app`.
+- Rebuilt or moved local app bundles may need to be removed and re-added in
+  Accessibility settings.
 
 ## Imported Mappings
 
@@ -71,6 +80,8 @@ Known suggestion gaps:
   shortcut input/parser yet.
 - Builds are ad-hoc signed for local QA, but not Developer ID signed or
   notarized unless release automation changes.
+- Developer ID signing and notarization are future work and should reduce
+  Accessibility and Gatekeeper friction for regular users.
 - Manual QA has covered the missing Accessibility permission path, successful
   Finder and Safari Accessibility scans, JSON import/export, persistent import
   storage, search/source filtering, and selected-row conflict detail.

@@ -68,6 +68,20 @@ Planned:
 - macOS 14 or newer
 - Swift 6 / Xcode 26 or newer recommended
 
+## Try The Alpha Release
+
+1. Download `KeyScout.app.zip` from the latest prerelease.
+2. Unzip it.
+3. Move `KeyScout.app` to `/Applications` if you want a stable app path.
+4. Open the exact `KeyScout.app` you downloaded and unzipped.
+5. In the `⌘?` menu, choose `Open Accessibility Settings`.
+6. Enable Accessibility for that exact `KeyScout.app`.
+7. Use `Scan Frontmost App`.
+
+If KeyScout still says Accessibility permission is needed, remove old KeyScout
+entries from System Settings > Privacy & Security > Accessibility, then add the
+exact `KeyScout.app` you are running.
+
 ## Build
 
 ```sh
@@ -92,6 +106,15 @@ Use `swift run KeyScout` only for a quick launch smoke test. macOS
 Accessibility permission is granted per app identity, and the SwiftPM debug
 binary is not the same identity as `dist/KeyScout.app`. To test shortcut
 scanning, build and open the local app bundle instead.
+
+For scanning, do not use `swift run KeyScout`. Use a `.app` bundle:
+
+- Release testers should grant Accessibility to the downloaded and unzipped
+  `KeyScout.app`.
+- Contributors should grant Accessibility to
+  `/Users/tobias/Documents/Development/Keyscout/dist/KeyScout.app`.
+- Nobody should expect `swift run KeyScout` to share Accessibility permission
+  with `KeyScout.app`.
 
 ## Local App Bundle
 
