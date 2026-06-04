@@ -31,3 +31,6 @@
 - Added JSON import for curated/manual shortcut mappings.
 - Added a known limitations page for Accessibility scanning, imports,
   suggestions, UI, and release status.
+- Recorded a v0.1 manual QA pass for launch, menu status, missing Accessibility
+  permission behavior, shortcut list opening, JSON export, JSON import, invalid
+  import errors, and local-only behavior.

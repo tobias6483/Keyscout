@@ -39,6 +39,8 @@ Current import behavior:
 Known import gaps:
 
 - Imported mappings are not persisted across launches yet.
+- Imported mappings do not appear in the list immediately after import unless
+  they match the latest scanned app name or bundle identifier.
 - There is no mapping validation UI beyond JSON decode errors.
 - There is no schema version field yet.
 - Duplicate and conflicting external mapping review is still minimal.
@@ -63,5 +65,7 @@ Known suggestion gaps:
 - The shortcut list window supports search and source filtering, but it is still
   a compact MVP table.
 - Builds are unsigned and not notarized unless release automation changes.
-- Manual QA against real apps and permission states is still required before a
-  public v0.1 release.
+- Manual QA has covered the missing Accessibility permission path, JSON
+  import/export, and the shortcut list window. Successful scans with
+  Accessibility permission granted still need to be verified before a public
+  v0.1 release.
