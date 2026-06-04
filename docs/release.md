@@ -148,6 +148,11 @@ Required GitHub secrets for signed/notarized artifacts:
 - `NOTARY_TEAM_ID`: Apple Developer Team ID.
 - `NOTARY_PASSWORD`: app-specific password or compatible notary password.
 
+GitHub Actions secrets are private repository or organization settings. They
+are not committed to Git, are not visible to people who clone the repository,
+and should only be exposed to trusted release workflows. Do not grant
+Developer ID or notary secrets to untrusted fork pull request workflows.
+
 ## Signing And Notarization
 
 The published v0.1.0-alpha artifacts are ad-hoc signed, not Developer ID signed,
