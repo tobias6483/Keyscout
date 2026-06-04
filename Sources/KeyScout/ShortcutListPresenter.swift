@@ -43,6 +43,7 @@ struct ShortcutListPresenter: Sendable {
             .map { shortcut in
                 ShortcutListRow(
                     appName: shortcut.appName,
+                    keyboardShortcut: shortcut.shortcut,
                     shortcut: shortcut.shortcut.description,
                     command: shortcut.menuTitle,
                     menuPath: shortcut.menuPath.joined(separator: " > "),
@@ -51,8 +52,31 @@ struct ShortcutListPresenter: Sendable {
             }
     }
 
+    func conflictDetail(for shortcut: KeyboardShortcut, in catalog: ShortcutCatalog) -> String {
+        let conflicts = catalog.conflicts(for: shortcut)
+
+        guard !conflicts.isEmpty else {
+            return "\(shortcut) looks unused in the latest catalog"
+        }
+
+        let commands = conflicts
+            .prefix(3)
+            .map { "\($0.appName): \($0.menuTitle) [\($0.source.rawValue)]" }
+            .joined(separator: "; ")
+
+        if conflicts.count > 3 {
+            return "\(shortcut) has \(conflicts.count) conflicts: \(commands); and \(conflicts.count - 3) more"
+        }
+
+        return "\(shortcut) has \(conflicts.count) \(pluralizedConflict(count: conflicts.count)): \(commands)"
+    }
+
     private func pluralizedShortcut(count: Int) -> String {
         count == 1 ? "shortcut" : "shortcuts"
+    }
+
+    private func pluralizedConflict(count: Int) -> String {
+        count == 1 ? "conflict" : "conflicts"
     }
 }
 
@@ -63,6 +87,7 @@ struct ShortcutMenuRow: Equatable, Sendable {
 
 struct ShortcutListRow: Equatable, Sendable {
     var appName: String
+    var keyboardShortcut: KeyboardShortcut
     var shortcut: String
     var command: String
     var menuPath: String

@@ -64,6 +64,8 @@ Known suggestion gaps:
 
 - The shortcut list window supports search and source filtering, but it is still
   a compact MVP table.
+- Conflict detail is driven by selecting an existing row; there is no arbitrary
+  shortcut input/parser yet.
 - Builds are unsigned and not notarized unless release automation changes.
 - Manual QA has covered the missing Accessibility permission path, JSON
   import/export, and the shortcut list window. Successful scans with

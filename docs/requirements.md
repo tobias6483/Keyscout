@@ -7,11 +7,12 @@ This document tracks implementation coverage against the product brief.
 - Menu bar app: initial Swift/AppKit status item scaffold
 - Global hotkey scanner: not implemented yet
 - Known shortcuts per app: initial accessibility-based frontmost app scan with
-  menu submenu browsing, searchable list window, source filtering, and built-in
-  curated mapping merge
+  menu submenu browsing, searchable list window, source filtering, selected-row
+  conflict details, and built-in curated mapping merge
 - Generate unused shortcut: initial deterministic generator implemented
 - Reserved shortcut handling: expanded conservative defaults documented
-- Conflict warning: core conflict lookup implemented
+- Conflict warning: core conflict lookup and selected-row conflict detail
+  implemented
 - Export to JSON: initial export of latest scan to Downloads with documented
   catalog schema
 - Import mapping JSON: local persistent import and scan merge
@@ -28,4 +29,5 @@ This document tracks implementation coverage against the product brief.
 - Global hotkeys registered outside app menus are not detected yet.
 - Built-in curated mappings are intentionally minimal.
 - Reserved shortcut defaults are conservative and not OS-version-aware yet.
-- The shortcut list window is still a compact MVP table.
+- The shortcut list window is still a compact MVP table and does not yet support
+  checking arbitrary typed shortcuts.

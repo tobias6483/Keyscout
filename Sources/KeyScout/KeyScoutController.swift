@@ -72,6 +72,14 @@ final class KeyScoutController {
         presenter.listRows(for: latestCatalog, filter: filter)
     }
 
+    func conflictRows(for shortcut: KeyboardShortcut) -> [ShortcutListRow] {
+        presenter.listRows(for: ShortcutCatalog(shortcuts: latestCatalog.conflicts(for: shortcut)))
+    }
+
+    func conflictDetail(for shortcut: KeyboardShortcut) -> String {
+        presenter.conflictDetail(for: shortcut, in: latestCatalog)
+    }
+
     var latestShortcutCount: Int {
         latestCatalog.shortcuts.count
     }
