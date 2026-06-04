@@ -18,14 +18,8 @@ jobs:
       - name: Swift version
         run: swift --version
 
-      - name: Build unsigned app bundle
-        run: scripts/build_app.sh
-
-      - name: Create unsigned artifact
-        run: |
-          mkdir -p dist/artifacts
-          ditto -c -k --keepParent dist/KeyScout.app dist/artifacts/KeyScout.app.zip
-          shasum -a 256 dist/artifacts/KeyScout.app.zip > dist/artifacts/KeyScout.app.zip.sha256
+      - name: Package unsigned app artifact
+        run: scripts/package_app.sh
 
       - name: Upload unsigned app artifact
         uses: actions/upload-artifact@v4

@@ -33,6 +33,8 @@
 - Added a known limitations page for Accessibility scanning, imports,
   suggestions, UI, and release status.
 - Added persistent local storage for imported curated/manual shortcut mappings.
+- Added unsigned app packaging with SHA-256 checksum generation for v0.1 release
+  preparation.
 - Recorded a v0.1 manual QA pass for launch, menu status, missing Accessibility
   permission behavior, shortcut list opening, JSON export, JSON import, invalid
   import errors, and local-only behavior.
