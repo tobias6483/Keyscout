@@ -4,6 +4,10 @@
 
 - Clarified install, run-mode, and Accessibility permission identity guidance
   for release testers and contributors.
+- Added a more specific missing Accessibility permission message and a
+  `Reveal KeyScout in Finder` menu action.
+- Added Developer ID signing and notarization-capable packaging scripts and
+  GitHub artifact workflow configuration.
 
 ## v0.1.0-alpha - 2026-06-04
 

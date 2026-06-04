@@ -10,8 +10,9 @@ struct KeyScoutControllerTests {
         let controller = KeyScoutController(isAccessibilityTrusted: { false })
 
         #expect(controller.hasAccessibilityPermission == false)
-        #expect(controller.accessibilityPermissionSummary == "Accessibility permission needed to scan app menus")
-        #expect(controller.generatedShortcutSummary() == "Accessibility permission needed to scan app menus")
+        #expect(controller.accessibilityPermissionSummary == "Enable Accessibility for the exact KeyScout.app you are running")
+        #expect(controller.accessibilityPermissionDetail == "`swift run` uses a different app identity and does not share Accessibility permission with KeyScout.app")
+        #expect(controller.generatedShortcutSummary() == "Enable Accessibility for the exact KeyScout.app you are running")
         #expect(controller.scanFrontmostApplication().shortcuts.isEmpty)
     }
 
@@ -24,6 +25,7 @@ struct KeyScoutControllerTests {
 
         #expect(controller.hasAccessibilityPermission == true)
         #expect(controller.accessibilityPermissionSummary == "Accessibility permission ready")
+        #expect(controller.accessibilityPermissionDetail == "KeyScout can scan app menus")
     }
 
     @Test("imports mapping JSON")

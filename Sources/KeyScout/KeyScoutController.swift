@@ -43,7 +43,13 @@ final class KeyScoutController {
     var accessibilityPermissionSummary: String {
         hasAccessibilityPermission
             ? "Accessibility permission ready"
-            : "Accessibility permission needed to scan app menus"
+            : "Enable Accessibility for the exact KeyScout.app you are running"
+    }
+
+    var accessibilityPermissionDetail: String {
+        hasAccessibilityPermission
+            ? "KeyScout can scan app menus"
+            : "`swift run` uses a different app identity and does not share Accessibility permission with KeyScout.app"
     }
 
     func generatedShortcutSummary() -> String {

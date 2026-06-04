@@ -28,12 +28,13 @@ Implemented:
 - JSON export for the latest shortcut catalog with documented schema and sample
 - Unit tests for shortcut generation, conflict lookup, and JSON round trips
 - GitHub Actions build and test workflow
-- GitHub issue triage and ad-hoc signed app artifact workflows with checksums
+- GitHub issue triage and app artifact workflows with checksums
+- Developer ID signing and notarization-capable release artifact pipeline
 
 Planned:
 
 - Global hotkey detection beyond app menus
-- Signed app release workflow
+- Developer ID signed and notarized public release assets
 
 ## MVP
 
@@ -80,7 +81,8 @@ Planned:
 
 If KeyScout still says Accessibility permission is needed, remove old KeyScout
 entries from System Settings > Privacy & Security > Accessibility, then add the
-exact `KeyScout.app` you are running.
+exact `KeyScout.app` you are running. Use `Reveal KeyScout in Finder` from the
+`⌘?` menu to find the app bundle macOS should trust.
 
 ## Build
 
@@ -131,6 +133,10 @@ For a zipped maintainer QA artifact with a SHA-256 checksum:
 ```sh
 scripts/package_app.sh
 ```
+
+Maintainers with Developer ID credentials can also build a signed, notarized,
+stapled artifact through the release flow documented in
+[docs/release.md](docs/release.md).
 
 ## Repository
 

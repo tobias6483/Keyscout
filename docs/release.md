@@ -79,9 +79,42 @@ cd dist/artifacts
 shasum -a 256 KeyScout.app.zip > KeyScout.app.zip.sha256
 ```
 
+## Developer ID Signed Artifact
+
+Maintainers with an Apple Developer Program membership and a Developer ID
+Application certificate can create a signed, notarized, stapled artifact:
+
+```sh
+KEYSCOUT_CODESIGN_IDENTITY="Developer ID Application: Example (TEAMID)" \
+KEYSCOUT_NOTARIZE=1 \
+KEYSCOUT_NOTARY_PROFILE=keyscout-notary \
+scripts/package_app.sh
+```
+
+`scripts/build_app.sh` uses ad-hoc signing by default. When
+`KEYSCOUT_CODESIGN_IDENTITY` is set, it signs `dist/KeyScout.app` with hardened
+runtime and timestamping. When `KEYSCOUT_NOTARIZE=1`,
+`scripts/package_app.sh` runs `scripts/notarize_app.sh`, waits for Apple's
+notary service, staples the ticket, validates the stapled app, then writes the
+zip and checksum.
+
+Notarization credentials can be provided in either form:
+
+- `KEYSCOUT_NOTARY_PROFILE`: a notarytool keychain profile.
+- `KEYSCOUT_NOTARY_APPLE_ID`, `KEYSCOUT_NOTARY_TEAM_ID`, and
+  `KEYSCOUT_NOTARY_PASSWORD`: Apple ID, team ID, and app-specific password or
+  compatible notary password.
+
+The generated files remain:
+
+```text
+dist/artifacts/KeyScout.app.zip
+dist/artifacts/KeyScout.app.zip.sha256
+```
+
 ## Local Release Check
 
-Before a first alpha release, run:
+Before publishing or replacing a release artifact, run:
 
 ```sh
 swift test
@@ -94,26 +127,42 @@ explicitly first keeps the release checklist easy to audit.
 
 ## GitHub App Artifact
 
-The `App Artifact` workflow builds the current ad-hoc signed app bundle on
-GitHub Actions, packages it as `KeyScout.app.zip`, writes
-`KeyScout.app.zip.sha256`, and uploads both files as a workflow artifact for
-maintainer testing.
+The `App Artifact` workflow builds the app bundle on GitHub Actions, packages it
+as `KeyScout.app.zip`, writes `KeyScout.app.zip.sha256`, and uploads both files
+as a workflow artifact for maintainer testing.
 
-This is not a polished public distribution build. Signing, notarization, and a
-stable release channel are future work.
+Without signing secrets, the workflow produces an ad-hoc signed artifact. With
+Developer ID and notary secrets, it produces a Developer ID signed, notarized,
+stapled artifact.
+
+Required GitHub secrets for signed/notarized artifacts:
+
+- `DEVELOPER_ID_CERTIFICATE_P12_BASE64`: base64-encoded Developer ID
+  Application `.p12`.
+- `DEVELOPER_ID_CERTIFICATE_PASSWORD`: password for the `.p12`.
+- `DEVELOPER_ID_KEYCHAIN_PASSWORD`: temporary CI keychain password.
+- `DEVELOPER_ID_APPLICATION_IDENTITY`: codesign identity, for example
+  `Developer ID Application: Example (TEAMID)`.
+- `KEYSCOUT_NOTARIZE`: set to `1` for notarized release artifacts.
+- `NOTARY_APPLE_ID`: Apple ID for `notarytool`.
+- `NOTARY_TEAM_ID`: Apple Developer Team ID.
+- `NOTARY_PASSWORD`: app-specific password or compatible notary password.
 
 ## Signing And Notarization
 
-Current v0.1 artifacts are ad-hoc signed, not Developer ID signed, and not
-notarized. Users should expect a macOS Gatekeeper warning if they open the
-artifact directly. Do not present the artifact as a stable public release until
-Developer ID signing and notarization are available or the unsigned-alpha status
-is explicitly accepted.
+The published v0.1.0-alpha artifacts are ad-hoc signed, not Developer ID signed,
+and not notarized. Users should expect a macOS Gatekeeper warning if they open
+that artifact directly.
+
+The repository now has a Developer ID signing and notarization-capable release
+pipeline. Do not present a future artifact as Developer ID signed or notarized
+unless `KEYSCOUT_NOTARIZE=1` was used, `notarytool` accepted the submission,
+`stapler validate` passed, and the uploaded checksum matches the final stapled
+app zip.
 
 ## Future Release Work
 
 - Add bundle validation.
 - Add a combined local release check script.
-- Add signed Developer ID builds.
-- Add notarization.
+- Configure repository secrets for signed Developer ID release artifacts.
 - Consider a Homebrew cask once the app is stable.
