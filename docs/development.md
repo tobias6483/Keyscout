@@ -37,6 +37,11 @@ Use `Import Mapping JSON` to load a KeyScout catalog file into the in-memory
 mapping library for the current app session. Imported mappings merge with future
 scans by app name or bundle identifier.
 
+During manual QA, remember that importing a mapping file does not populate the
+list by itself unless the imported shortcuts match the current or future scanned
+app name or bundle identifier. To test imported rows in the UI, scan a matching
+app first or use a fixture whose app metadata matches the scanned app.
+
 The exported catalog shape is documented in [json-schema.md](json-schema.md),
 with a sample file at [examples/sample-catalog.json](examples/sample-catalog.json).
 
@@ -62,6 +67,12 @@ Shortcut discovery uses macOS Accessibility APIs where possible. During manual
 testing, macOS may ask for Accessibility permission so KeyScout can inspect app
 menus. If permission is missing, the menu shows an Accessibility permission
 message and an `Open Accessibility Settings` action.
+
+The missing-permission path can be tested without granting access: launch
+`dist/KeyScout.app`, open the `⌘?` menu, verify the permission message, choose
+`Scan Frontmost App`, and confirm the status still reports that Accessibility
+permission is needed. A full scan QA pass requires granting KeyScout
+Accessibility access in System Settings.
 
 ## GitHub Workflow
 
