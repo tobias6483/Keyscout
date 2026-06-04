@@ -25,7 +25,7 @@ Implemented:
 - JSON export for the latest shortcut catalog with documented schema and sample
 - Unit tests for shortcut generation, conflict lookup, and JSON round trips
 - GitHub Actions build and test workflow
-- GitHub issue triage and unsigned app artifact workflows with checksums
+- GitHub issue triage and ad-hoc signed app artifact workflows with checksums
 
 Planned:
 
@@ -92,7 +92,8 @@ scripts/build_app.sh
 open dist/KeyScout.app
 ```
 
-The local app bundle is unsigned. See [docs/development.md](docs/development.md).
+The local app bundle is ad-hoc signed for maintainer QA. See
+[docs/development.md](docs/development.md).
 
 For a zipped maintainer QA artifact with a SHA-256 checksum:
 

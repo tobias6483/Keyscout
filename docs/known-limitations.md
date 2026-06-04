@@ -55,6 +55,9 @@ Current suggestion behavior:
 
 Known suggestion gaps:
 
+- `Generate Unused Shortcut` scans the current frontmost context before
+  suggesting. If KeyScout's own shortcut list window is frontmost, the latest
+  app catalog can be replaced with an empty/non-useful scan.
 - Suggestions are not ranked by user preference or app context yet.
 - Reserved shortcuts are not OS-version-aware yet.
 - User-defined blocked combinations are not implemented yet.
@@ -66,8 +69,8 @@ Known suggestion gaps:
   a compact MVP table.
 - Conflict detail is driven by selecting an existing row; there is no arbitrary
   shortcut input/parser yet.
-- Builds are unsigned and not notarized unless release automation changes.
-- Manual QA has covered the missing Accessibility permission path, JSON
-  import/export, and the shortcut list window. Successful scans with
-  Accessibility permission granted still need to be verified before a public
-  v0.1 release.
+- Builds are ad-hoc signed for local QA, but not Developer ID signed or
+  notarized unless release automation changes.
+- Manual QA has covered the missing Accessibility permission path, successful
+  Finder and Safari Accessibility scans, JSON import/export, persistent import
+  storage, search/source filtering, and selected-row conflict detail.

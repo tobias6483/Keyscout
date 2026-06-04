@@ -19,7 +19,8 @@ This document tracks implementation coverage against the product brief.
 - Accessibility permission UX: initial menu status and settings shortcut
 - Local-only, no tracking: preserved
 - Issue triage and privacy review: implemented for OSS maintainer routing
-- Unsigned app artifact workflow: implemented for maintainer QA, not public release distribution
+- Ad-hoc signed app artifact workflow: implemented for maintainer QA, not public
+  release distribution
 
 ## Current Limitations
 

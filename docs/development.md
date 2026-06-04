@@ -62,8 +62,9 @@ scripts/build_app.sh
 open dist/KeyScout.app
 ```
 
-The local app bundle is unsigned. It is useful for manual testing of menu bar
-behavior and macOS permissions, but it is not a release artifact.
+The local app bundle is ad-hoc signed. It is useful for manual testing of menu
+bar behavior and macOS permissions, but it is not a Developer ID signed or
+notarized release artifact.
 
 ## Accessibility Permission
 
