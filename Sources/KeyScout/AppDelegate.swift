@@ -42,6 +42,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     action: #selector(openAccessibilitySettings),
                     keyEquivalent: ""
                 )
+                .targeting(self)
             )
         }
 
@@ -59,6 +60,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 action: #selector(scanFrontmostApp),
                 keyEquivalent: "s"
             )
+            .targeting(self)
         )
 
         menu.addItem(
@@ -67,6 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 action: #selector(openShortcutList),
                 keyEquivalent: "l"
             )
+            .targeting(self)
         )
 
         menu.addItem(
@@ -75,6 +78,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 action: #selector(importMappingJSON),
                 keyEquivalent: "i"
             )
+            .targeting(self)
         )
 
         menu.addItem(
@@ -83,6 +87,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 action: #selector(generateUnusedShortcut),
                 keyEquivalent: "g"
             )
+            .targeting(self)
         )
 
         menu.addItem(
@@ -91,14 +96,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 action: #selector(exportJSON),
                 keyEquivalent: "e"
             )
+            .targeting(self)
         )
 
         menu.addItem(.separator())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-
-        for item in menu.items where item.action != nil {
-            item.target = self
-        }
+        menu.addItem(
+            NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+                .targeting(NSApp)
+        )
 
         return menu
     }
@@ -201,5 +206,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func updateStatus(_ status: String) {
         statusText = status
         statusItem?.menu = makeMenu(status: status)
+    }
+}
+
+private extension NSMenuItem {
+    func targeting(_ target: AnyObject) -> NSMenuItem {
+        self.target = target
+        return self
     }
 }
